@@ -1,0 +1,22 @@
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+*.pt
+*.pth
+*.ckpt
+wandb/
+runs/
+results/
+*.log
+.DS_Store
+.env
+src/shakespeare.txt
+
+# Internal research notes (not for public repo)
+notes/
+docs/
+reports/
