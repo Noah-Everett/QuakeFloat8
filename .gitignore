@@ -16,6 +16,18 @@ results/
 .env
 src/shakespeare.txt
 
+# LaTeX build artifacts
+*.aux
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.blg
+*.bbl
+*.lof
+*.lot
+
 # Internal research notes (not for public repo)
 notes/
 docs/
