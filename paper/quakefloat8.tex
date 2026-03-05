@@ -43,8 +43,7 @@
 % ── Boxes ──
 \newtcolorbox{keyresult}{colback=green!5!white, colframe=green!50!black,
   title={\textbf{Key Result}}, fonttitle=\bfseries}
-\newtcolorbox{openquestion}{colback=orange!5!white, colframe=orange!60!black,
-  title={\textbf{Open Question}}, fonttitle=\bfseries}
+
 
 % ── Commands ──
 \newcommand{\NMSE}{\mathrm{NMSE}}
@@ -1037,13 +1036,12 @@ yielding $2\times$ the precision per octave of FP8 at comparable hardware cost.}
 
 
 %% ═══════════════════════════════════════════════════════
-\section{Open Questions and Next Steps}
-\label{sec:open}
+\section{Future Work}
+\label{sec:future}
 %% ═══════════════════════════════════════════════════════
 
 \subsection{Scaling Validation}
 
-\begin{openquestion}
 The TinyGPT-2 result (2~layers, 500 steps) demonstrates format viability but says little about
 behavior at scale. Priority next steps:
 \begin{enumerate}[leftmargin=2em]
@@ -1051,33 +1049,15 @@ behavior at scale. Priority next steps:
   \item GPT-2 Medium (355M) --- do any instabilities emerge?
   \item Comparison against MXFP8 with per-tensor scaling.
 \end{enumerate}
-\end{openquestion}
 
 \subsection{Gradient Quantization}
 
-\begin{openquestion}
 QF8's \texttt{u3.4} encoding gives 8~octaves per element, which may be insufficient for gradients
 (which need wider dynamic range than weights/activations).
 A \texttt{u4.3} variant (4~integer + 3~fractional bits = wider range, lower precision)
 for backward passes is a natural extension but has not been validated.
 FP8 training uses E5M2 for gradients for the same reason.
-\end{openquestion}
 
-\subsection{Paper Framing}
-
-\begin{openquestion}
-The strongest framing is:
-\emph{``A provably optimal 8-bit encoding for ML multiply-accumulate, with integer-add multiplication.''}
-
-Key contributions in order of novelty:
-\begin{enumerate}[leftmargin=2em]
-  \item Minimax NMSE optimality theorem (Theorem~\ref{thm:minimax}).
-  \item Format design: log encoding + block scaling.
-  \item $+6.6$~dB empirical advantage over the FP8 industry standard.
-  \item Hardware cost analysis ($3.5\times$ cheaper multiplier).
-\end{enumerate}
-Weakest aspect: scale of validation. Strongest aspect: formal theory.
-\end{openquestion}
 
 \subsection{BMD Decoder Conjecture}
 
@@ -1091,66 +1071,6 @@ with integer arithmetic.
 This remains unproven and should be either proved rigorously or clearly labeled as a conjecture
 in any paper.
 
-\subsection{Anticipated Reviewer Concerns}
-
-\begin{enumerate}[leftmargin=2em]
-  \item \textbf{``This is just Johnson 2018 with block scaling.''}
-    Response: Yes, the core mechanism is Johnson's. Contributions are:
-    fixed-width encoding ($4\times$ smaller LUT), block scaling, and formal optimality.
-  \item \textbf{``Why not just use MXFP8?''}
-    Response: QF8 provides $4.6\times$ less quantization noise at the same storage cost
-    with a $3.5\times$ cheaper multiplier. Whether this justifies new silicon depends on application.
-  \item \textbf{``Validation too small-scale.''}
-    Response: Legitimate. The $+6.6$~dB advantage is mathematical, not empirical.
-    Large-scale validation is necessary future work.
-  \item \textbf{``Industry won't adopt a non-IEEE format.''}
-    Response: MX formats already demonstrate willingness to adopt non-IEEE formats.
-    QF8's block scaling is MX-compatible.
-  \item \textbf{``The equalization property is implicit in Bennett~[13] / Smith~[15] / Sun \& Goyal~[16].''}
-    Response: Bennett's framework is entirely MSE-based; the equalization property (density-independence
-    under MSRE) is structurally impossible in his framework because MSE \emph{does} depend on the
-    source distribution.
-    Smith's amplitude-independence result is a statement about signal level, not source distribution ---
-    his distortion formula is explicitly distribution-dependent ($0.707$ for exponential, $0.798$ for Gaussian).
-    Sun \& Goyal work in the MSRE framework but derive density-specific optimal quantizers;
-    they do not state the equalization property or the minimax result.
-    The $x^2$ cancellation in the NMSE ratio is a simple observation in retrospect,
-    but it has not been stated or proved in any prior work found.
-\end{enumerate}
-
-
-%% ═══════════════════════════════════════════════════════
-\section{Summary of Corrections from Original}
-\label{sec:corrections}
-%% ═══════════════════════════════════════════════════════
-
-For completeness, we document all corrections made relative to earlier drafts:
-
-\begin{table}[h]
-\centering
-\caption{Summary of corrections from earlier drafts.}
-\label{tab:corrections}
-\begin{tabular}{@{}p{3cm}p{5cm}p{5cm}@{}}
-\toprule
-Item & Original (incorrect) & Corrected \\
-\midrule
-Thm 3.1 formula & $\MSRE_X + \MSRE_Y + \MSRE_X \MSRE_Y$ & $\NMSE_X + \NMSE_Y - \NMSE_X \NMSE_Y$ (centroid) \\
-Key identity & --- & $(1 - n_{\text{prod}}) = (1 - n_X)(1 - n_Y)$ \\
-Proof method & Invalid factorization & Direct expansion using $X \perp Y$ \\
-Exact MSRE & $\varepsilon^2/2$ & $\varepsilon^2/12$ \\
-Thm 5.3 & Under MSE & Under \textbf{MSRE} (MSE ratio $\approx 1$) \\
-E4M3 SQNR & 25.1 dB & \textbf{31.5 dB} \\
-Bit allocation & $(7.6, 11.5, 4.9)$ & $\mathbf{(9.75, 14.07, 0.18)}$ \\
-Quadratic error & $< 0.1\%$ & \textbf{0.32\%} (minimax: 0.27\%) \\
-Claim 1 (BMD) & ``Claim'' & \textbf{Conjecture} (unproven) \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-None of these corrections affects the core claims of QF8. The main practical impact is that
-$\varepsilon^2/12$ (corrected from $\varepsilon^2/2$) means QF8 is actually \emph{better}
-than originally stated, and the separation result (corrected to MSRE) is actually
-\emph{stronger} for the natural floating-point metric.
 
 
 %% ═══════════════════════════════════════════════════════
