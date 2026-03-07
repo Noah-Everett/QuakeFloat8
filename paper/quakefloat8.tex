@@ -169,6 +169,26 @@ constant at $r = 2^{1/16} \approx 1.0443$, giving a maximum relative quantizatio
 Compare FP8 E4M3, which has 8~levels per octave (3-bit mantissa) and a maximum relative error
 of $1/16 = 6.25\%$ within each binade.
 
+\begin{remark}[Why \texttt{u3.4}: Bit Allocation]
+\label{rem:why-u34}
+The 7-bit log code admits several integer/fractional splits.
+The choice of 3~integer + 4~fractional bits is determined by the ML workload:
+\begin{itemize}[leftmargin=2em]
+  \item \textbf{Per-element range:} 3~integer bits give $2^3 = 8$ octaves of per-element dynamic range.
+    With E8M0 block scaling absorbing inter-block variation, the per-element code only needs to cover
+    \emph{within-block} spread. For typical ML tensors with block size 32, empirical within-block
+    spread is 3--5 octaves; 8~octaves provides comfortable margin.
+  \item \textbf{Precision:} 4~fractional bits give 16~levels per octave ($\MSRE = 1.56 \times 10^{-4}$).
+    Shifting one fractional bit to integer (\texttt{u4.3}: 16~octaves, 8~levels/octave) halves precision
+    for already-sufficient range --- strictly worse for weights and activations.
+    Shifting one integer bit to fractional (\texttt{u2.5}: 4~octaves, 32~levels/octave) risks overflow
+    for blocks with $>4$ octave spread.
+  \item \textbf{Gradient variant:} For backward passes, where gradients require wider dynamic range,
+    a \texttt{u4.3} variant (16~octaves, 8~levels/octave) is the natural analog of
+    FP8's E5M2 for gradients (Section~\ref{sec:future}).
+\end{itemize}
+\end{remark}
+
 \subsection{Multiplication as Integer Addition}
 
 For two QF8 values with log codes $c_a, c_b$:
@@ -321,7 +341,8 @@ Laplace, and the empirical distributions observed in trained networks.
 
 \begin{theorem}[Minimax NMSE Optimality of Log-Uniform Quantization]
 \label{thm:minimax}
-Among all $N$-level quantizers on $[a,b]$, the log-uniform quantizer uniquely minimizes the worst-case
+In the high-resolution regime ($N \gg 1$), among all $N$-level quantizers on $[a,b]$,
+the log-uniform quantizer uniquely minimizes the worst-case
 NMSE (and MSRE) over all densities:
 \[
   Q^*_{\log} = \argmin_{Q \in \mathcal{Q}_N}\; \max_{f \in \mathcal{F}[a,b]}\; \NMSE(Q, f)
@@ -384,6 +405,24 @@ If $Q \neq Q_{\log}$, then $\phi$ is non-constant and Step~2 gives strict inequa
 The same quantizer also minimizes worst-case MSRE. The proof is identical, with
 $w(x)^2 f(x)/x^2$ replacing $w(x)^2 f(x)/\E[X^2]$.
 \end{corollary}
+
+\begin{remark}[High-Resolution Regime]
+The proof uses Bennett's high-resolution integral approximation, which is asymptotically exact
+as $N \to \infty$. For finite~$N$, Theorem~\ref{thm:exact-msre} provides the exact (non-asymptotic)
+per-cell MSRE: the ratio of exact to approximate MSRE is $0.9997$ at $N = 256$ (Table~\ref{tab:msre-verify}).
+The minimax conclusion holds for all practical quantizer sizes ($N \geq 16$).
+\end{remark}
+
+\begin{remark}[Domain Restriction and Zero Handling]
+\label{rem:zero-handling}
+Theorem~\ref{thm:minimax} applies to densities on $[a,b] \subset \R_{>0}$, excluding zero.
+In practice, ML tensors contain exact zeros (e.g., ReLU outputs) and near-zero values.
+QF8 handles this in two ways:
+(1)~the code $c = 0$ represents exact zero, absorbing any point mass at the origin;
+(2)~block scaling with E8M0 exponents as small as $2^{-127}$ shifts the smallest nonzero
+representable value to ${\sim}5.9 \times 10^{-39}$, far below any practical threshold.
+The minimax guarantee applies to the nonzero portion of the signal; the zero code handles the rest exactly.
+\end{remark}
 
 
 %% ═══════════════════════════════════════════════════════
@@ -493,22 +532,31 @@ $\MSRE \approx \NMSE$ with ratio $1.0009$ for $N = 16$.
 
 \begin{theorem}[Log-Uniform Optimal for Multiplication]
 \label{thm:product-optimal}
-Among all $N$-level quantizer pairs $(Q_X, Q_Y)$ on $[a,b]$, the log-uniform quantizer minimizes
-the worst-case product NMSE:
+Among all $N$-level centroid-satisfying quantizer pairs $(Q_X, Q_Y)$ on $[a,b]$, the log-uniform
+quantizer minimizes the worst-case product NMSE:
 \[
-  Q_X^* = Q_Y^* = Q_{\log} = \argmin_{Q_X, Q_Y \in \mathcal{Q}_N}
+  Q_X^* = Q_Y^* = Q_{\log} = \argmin_{Q_X, Q_Y \in \mathcal{Q}_N^c}
   \max_{f_X, f_Y} \NMSE_{\mathrm{prod}}
 \]
+where $\mathcal{Q}_N^c$ denotes centroid-satisfying $N$-level quantizers.
 The minimax value is $2n^* - (n^*)^2 = 1 - (1 - n^*)^2$ where $n^* = \varepsilon^2/12$.
 \end{theorem}
 
 \begin{proof}
 Uses two properties:
-(1)~\emph{Monotonicity}: under the centroid condition, $\partial/\partial n_X(n_X + n_Y - n_X n_Y) = 1 - n_Y > 0$.
+(1)~\emph{Monotonicity}: under the centroid condition, $\NMSE_{\mathrm{prod}} = n_X + n_Y - n_X n_Y$,
+and $\partial/\partial n_X(n_X + n_Y - n_X n_Y) = 1 - n_Y > 0$.
 (2)~\emph{Density-independence}: $Q_{\log}$ achieves $\NMSE = n^*$ for all densities.
 For any $Q_X \neq Q_{\log}$, Theorem~\ref{thm:minimax} provides $f_X^*$ with $\NMSE(Q_X, f_X^*) > n^*$,
 giving strictly worse product NMSE.
 \end{proof}
+
+\begin{remark}[Centroid Restriction]
+The centroid condition ($\E[\delta_X \mid X \in S_k] = 0$) is without loss of generality for
+this optimization: given any quantizer $Q$ that violates it, replacing each codepoint by its
+conditional mean yields a quantizer $Q'$ with strictly lower NMSE and the same cell partition.
+The minimax over centroid quantizers therefore equals the minimax over all quantizers.
+\end{remark}
 
 \subsection{Extension to Dot Products}
 
