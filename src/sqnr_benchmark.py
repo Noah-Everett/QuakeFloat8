@@ -76,10 +76,12 @@ def qf8_roundtrip(x: torch.Tensor) -> tuple[torch.Tensor, dict]:
     nonzero_mask = abs_s >= threshold
     codes = torch.where(nonzero_mask, raw.clamp(1, QF8_MAX_CODE), torch.zeros_like(raw))
 
-    # Diagnostics: count clips and zeros
-    clip_high = (raw > QF8_MAX_CODE) & nonzero_mask
-    clip_low = (~nonzero_mask) & (abs_s > 0)  # nonzero values mapped to zero code
-    zero_codes = (codes == 0)
+    # Diagnostics: count clips and zeros (exclude padding)
+    valid = torch.zeros_like(codes, dtype=torch.bool)
+    valid.reshape(-1)[:n] = True
+    clip_high = (raw > QF8_MAX_CODE) & nonzero_mask & valid
+    clip_low = (~nonzero_mask) & (abs_s > 0) & valid
+    zero_codes = (codes == 0) & valid
 
     # Decode
     mags_unscaled = torch.exp2((codes - QF8_BIAS) / 16.0)
@@ -89,11 +91,10 @@ def qf8_roundtrip(x: torch.Tensor) -> tuple[torch.Tensor, dict]:
 
     result = result.reshape(-1)[:n].reshape(orig_shape)
 
-    total_elements = n  # original (unpadded) count
     diag = {
-        "clip_high_rate": clip_high.sum().item() / (n_blocks * BLOCK_SIZE),
-        "clip_low_rate": clip_low.sum().item() / (n_blocks * BLOCK_SIZE),
-        "zero_code_rate": zero_codes.sum().item() / (n_blocks * BLOCK_SIZE),
+        "clip_high_rate": clip_high.sum().item() / n,
+        "clip_low_rate": clip_low.sum().item() / n,
+        "zero_code_rate": zero_codes.sum().item() / n,
     }
     return result, diag
 
@@ -148,26 +149,30 @@ def mxfp8_roundtrip(x: torch.Tensor) -> tuple[torch.Tensor, dict]:
     signs = torch.sign(scaled)
     abs_s = scaled.abs()
 
-    # Encode via searchsorted on midpoints
+    # Encode via searchsorted on midpoints (move LUT to input device)
+    fp8_mid = _FP8_MID.to(abs_s.device)
+    fp8_lut = _FP8_LUT.to(abs_s.device)
     flat_abs = abs_s.reshape(-1)
-    codes = torch.searchsorted(_FP8_MID, flat_abs)
+    codes = torch.searchsorted(fp8_mid, flat_abs)
     codes = codes.clamp(0, 126)
 
-    # Diagnostics
-    clip_high = (flat_abs > FP8_MAX_VAL)
-    zero_codes = (codes == 0)
+    # Diagnostics (exclude padding)
+    valid = torch.zeros(flat_abs.numel(), dtype=torch.bool, device=flat_abs.device)
+    valid[:n] = True
+    clip_high = (flat_abs > FP8_MAX_VAL) & valid
+    zero_codes = (codes == 0) & valid
 
     # Decode
-    mags_unscaled = _FP8_LUT[codes].reshape(abs_s.shape)
+    mags_unscaled = fp8_lut[codes].reshape(abs_s.shape)
     mags = mags_unscaled * safe_scales.unsqueeze(-1)
     result = signs * mags
 
     result = result.reshape(-1)[:n].reshape(orig_shape)
 
     diag = {
-        "clip_high_rate": clip_high.sum().item() / flat_abs.numel(),
+        "clip_high_rate": clip_high.sum().item() / n,
         "clip_low_rate": 0.0,
-        "zero_code_rate": zero_codes.sum().item() / flat_abs.numel(),
+        "zero_code_rate": zero_codes.sum().item() / n,
     }
     return result, diag
 
@@ -197,19 +202,20 @@ def int8_roundtrip(x: torch.Tensor) -> tuple[torch.Tensor, dict]:
     # Quantize
     q = torch.round(blocks / safe_scales).clamp(-127, 127)
 
-    # Diagnostics
-    clip_count = ((blocks.abs() / safe_scales) > 127.5).sum().item()
-    zero_count = (q == 0).sum().item()
+    # Diagnostics (exclude padding)
+    valid = torch.zeros_like(q, dtype=torch.bool)
+    valid.reshape(-1)[:n] = True
+    clip_count = (((blocks.abs() / safe_scales) > 127.5) & valid).sum().item()
+    zero_count = ((q == 0) & valid).sum().item()
 
     # Dequantize
     result = q * safe_scales
     result = result.reshape(-1)[:n].reshape(orig_shape)
 
-    total = n_blocks * BLOCK_SIZE
     diag = {
-        "clip_high_rate": clip_count / total,
+        "clip_high_rate": clip_count / n,
         "clip_low_rate": 0.0,
-        "zero_code_rate": zero_count / total,
+        "zero_code_rate": zero_count / n,
     }
     return result, diag
 
