@@ -339,9 +339,13 @@ def main():
         all_results[model_name] = results
 
     # Save raw results
-    with open("sqnr_results.json", "w") as f:
+    import os
+    results_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "results")
+    os.makedirs(results_dir, exist_ok=True)
+    out_path = os.path.join(results_dir, "sqnr_results.json")
+    with open(out_path, "w") as f:
         json.dump(all_results, f, indent=2)
-    print(f"\nRaw results saved to sqnr_results.json")
+    print(f"\nRaw results saved to {out_path}")
 
 
 if __name__ == "__main__":

@@ -10,7 +10,6 @@ build/
 *.ckpt
 wandb/
 runs/
-results/
 *.log
 .DS_Store
 .env
