@@ -1,0 +1,170 @@
+[
+  {
+    "model": "gpt2",
+    "format": "FP32 (baseline)",
+    "perplexity": 24.9974,
+    "nll": 0,
+    "tokens": 283797,
+    "n_params": 124439808
+  },
+  {
+    "model": "gpt2",
+    "format": "W-only QF8",
+    "perplexity": 24.9621,
+    "nll": 0,
+    "tokens": 283797,
+    "n_params": 124439808
+  },
+  {
+    "model": "gpt2",
+    "format": "W-only MXFP8",
+    "perplexity": 25.0331,
+    "nll": 0,
+    "tokens": 283797,
+    "n_params": 124439808
+  },
+  {
+    "model": "gpt2",
+    "format": "W-only INT8",
+    "perplexity": 25.0253,
+    "nll": 0,
+    "tokens": 283797,
+    "n_params": 124439808
+  },
+  {
+    "model": "gpt2",
+    "format": "W8A8 QF8",
+    "perplexity": 25.4288,
+    "nll": 0,
+    "tokens": 283797,
+    "n_params": 124439808
+  },
+  {
+    "model": "gpt2",
+    "format": "W8A8 MXFP8",
+    "perplexity": 25.0526,
+    "nll": 0,
+    "tokens": 283797,
+    "n_params": 124439808
+  },
+  {
+    "model": "gpt2",
+    "format": "W8A8 INT8",
+    "perplexity": 26.3102,
+    "nll": 0,
+    "tokens": 283797,
+    "n_params": 124439808
+  },
+  {
+    "model": "gpt2-medium",
+    "format": "FP32 (baseline)",
+    "perplexity": 18.2427,
+    "nll": 824079.4736,
+    "tokens": 283797,
+    "n_params": 354823168
+  },
+  {
+    "model": "gpt2-medium",
+    "format": "W-only QF8",
+    "perplexity": 18.2409,
+    "nll": 824051.3259,
+    "tokens": 283797,
+    "n_params": 354823168
+  },
+  {
+    "model": "gpt2-medium",
+    "format": "W-only MXFP8",
+    "perplexity": 18.3453,
+    "nll": 825671.0985,
+    "tokens": 283797,
+    "n_params": 354823168
+  },
+  {
+    "model": "gpt2-medium",
+    "format": "W-only INT8",
+    "perplexity": 18.2455,
+    "nll": 824123.074,
+    "tokens": 283797,
+    "n_params": 354823168
+  },
+  {
+    "model": "gpt2-medium",
+    "format": "W8A8 QF8",
+    "perplexity": 18.5041,
+    "nll": 828117.3602,
+    "tokens": 283797,
+    "n_params": 354823168
+  },
+  {
+    "model": "gpt2-medium",
+    "format": "W8A8 MXFP8",
+    "perplexity": 18.3605,
+    "nll": 825907.2523,
+    "tokens": 283797,
+    "n_params": 354823168
+  },
+  {
+    "model": "gpt2-medium",
+    "format": "W8A8 INT8",
+    "perplexity": 18.5941,
+    "nll": 829494.7827,
+    "tokens": 283797,
+    "n_params": 354823168
+  },
+  {
+    "model": "gpt2-large",
+    "format": "FP32 (baseline)",
+    "perplexity": 15.4359,
+    "nll": 776665.3215,
+    "tokens": 283797,
+    "n_params": 774030080
+  },
+  {
+    "model": "gpt2-large",
+    "format": "W-only QF8",
+    "perplexity": 15.4525,
+    "nll": 776971.0109,
+    "tokens": 283797,
+    "n_params": 774030080
+  },
+  {
+    "model": "gpt2-large",
+    "format": "W-only MXFP8",
+    "perplexity": 15.4672,
+    "nll": 777241.5047,
+    "tokens": 283797,
+    "n_params": 774030080
+  },
+  {
+    "model": "gpt2-large",
+    "format": "W-only INT8",
+    "perplexity": 15.4328,
+    "nll": 776608.8345,
+    "tokens": 283797,
+    "n_params": 774030080
+  },
+  {
+    "model": "gpt2-large",
+    "format": "W8A8 QF8",
+    "perplexity": 15.4534,
+    "nll": 776988.0395,
+    "tokens": 283797,
+    "n_params": 774030080
+  },
+  {
+    "model": "gpt2-large",
+    "format": "W8A8 MXFP8",
+    "perplexity": 15.472,
+    "nll": 777329.1494,
+    "tokens": 283797,
+    "n_params": 774030080
+  },
+  {
+    "model": "gpt2-large",
+    "format": "W8A8 INT8",
+    "perplexity": 15.4331,
+    "nll": 776613.843,
+    "tokens": 283797,
+    "n_params": 774030080
+  }
+]
