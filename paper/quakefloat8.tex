@@ -75,12 +75,18 @@ The format uses a 1-bit sign, a 7-bit \texttt{u3.4} fixed-point $\log_2$ code pe
 and a shared E8M0 block exponent per 32 elements.
 
 Key results:
-(1)~Log-uniform quantization is provably minimax-optimal for NMSE over all source distributions (Theorem~\ref{thm:minimax}).
+(1)~Log-uniform quantization is asymptotically minimax-optimal for NMSE over all source
+distributions (Theorem~\ref{thm:minimax}), with the approximation verified to $0.03\%$
+accuracy at $N = 256$.
 (2)~On pretrained GPT-2 weights, QF8 achieves $+6.5$~dB SQNR over block-scaled MXFP8 E4M3,
 confirming the theoretical $+6.6$~dB prediction.
-(3)~Post-training quantization across the GPT-2 family (124M--774M parameters) shows QF8
-matching or outperforming MXFP8 on WikiText-2 perplexity for both weight-only and W8A8 quantization.
-(4)~The QF8 multiplier costs ${\sim}66$ gates vs.\ ${\sim}231$ for FP8 ($3.5\times$ cheaper).
+(3)~Weight-only post-training quantization across the GPT-2 family (124M--774M parameters)
+shows QF8 matching or outperforming MXFP8 on WikiText-2 perplexity (${\leq}0.2\%$ degradation).
+W8A8 quantization reveals a known limitation: QF8's log-uniform spacing underperforms MXFP8
+on activations that concentrate near zero.
+(4)~The full QF8 MAC unit is estimated at ${\sim}650$ gates vs.\ ${\sim}1350$ for FP8
+(${\sim}2\times$ cheaper), with the multiply path itself $3.5\times$ cheaper (66 vs.\ 231 gates).
+All gate counts are NAND2-equivalent estimates; no RTL synthesis has been performed.
 \end{abstract}
 
 \tableofcontents
@@ -128,13 +134,15 @@ to achieve full FP32 dynamic range.
   \item \textbf{Format design.} QF8 combines a \texttt{u3.4} fixed-point log code (16 levels per octave)
     with E8M0 block scaling, achieving $2\times$ the precision per octave of FP8 E4M3
     at the same effective storage cost (8.25 bits/element).
-  \item \textbf{Hardware analysis.} Detailed gate-level models show the QF8 multiplier at ${\sim}66$~gates
-    vs.\ ${\sim}231$ for FP8 mantissa multiplication ($3.5\times$ cheaper). The complete QF8-Medium MAC
-    unit achieves near-INT8 area and power while providing floating-point dynamic range.
-  \item \textbf{Empirical validation.} Post-training quantization of pretrained GPT-2 models
-    (124M--774M parameters) shows QF8 consistently matching or outperforming MXFP8 in WikiText-2
-    perplexity, with weight-only degradation ${\leq}0.2\%$ across all sizes.
-    STE-based QAT on TinyGPT-2 further confirms training viability.
+  \item \textbf{Hardware analysis.} Gate-level estimates (NAND2-equivalent, not synthesized) show the
+    QF8 multiply path at ${\sim}66$~gates vs.\ ${\sim}231$ for FP8 ($3.5\times$ cheaper).
+    The complete QF8-Medium MAC unit is estimated at ${\sim}650$ gates vs.\ ${\sim}1350$ for FP8
+    (${\sim}2\times$ cheaper), achieving near-INT8 area while providing floating-point dynamic range.
+  \item \textbf{Empirical validation.} Weight-only post-training quantization of pretrained GPT-2
+    models (124M--774M parameters) shows QF8 matching or outperforming MXFP8 in WikiText-2
+    perplexity (${\leq}0.2\%$ degradation). W8A8 quantization exposes a limitation:
+    QF8's log-uniform spacing is suboptimal for activations concentrated near zero
+    ($+1.7\%$ at 124M vs.\ MXFP8's $+0.2\%$), though this gap narrows with model scale.
 \end{enumerate}
 
 
@@ -200,7 +208,9 @@ For two QF8 values with log codes $c_a, c_b$:
 \end{align}
 The product's log code is a simple 7-bit integer addition. In hardware, this replaces the
 $4 \times 4$ mantissa multiplier needed for FP8 E4M3 with a 7-bit carry-lookahead adder ---
-a ${\sim}3.5\times$ reduction in gate count (66 vs.\ 231 gates).
+an estimated ${\sim}3.5\times$ reduction in multiply-path gate count (66 vs.\ 231 gates).
+For the full MAC unit including accumulation, the estimated advantage is ${\sim}2\times$
+(650 vs.\ 1350 gates; see Section~\ref{sec:hardware}).
 
 \subsection{Accumulation Strategy}
 
@@ -332,9 +342,11 @@ merely amplitude-independent. The minimax framing is not addressed in any prior 
 The ML setting motivates worst-case (minimax) rather than average-case (Bayes) analysis for two reasons.
 First, weight and activation distributions shift substantially across layers, training stages, and models,
 so a quantizer optimal for one distribution may be poor for another.
-Second, the equalization property has direct practical value: a format with density-independent NMSE
-requires no per-layer calibration of the quantizer grid, and its error bound holds regardless of whether
-the layer distribution matches any assumed prior.
+Second, the equalization property has direct practical value: for \emph{weight} quantization,
+a format with density-independent NMSE requires no per-layer calibration of the quantizer grid,
+and its error bound holds regardless of whether the layer distribution matches any assumed prior.
+(For activations, whose distributions may concentrate near zero, the log-uniform grid's precision
+allocation is suboptimal; see Section~\ref{sec:experiments}.)
 The log-uniform quantizer's minimax value $\varepsilon^2/12$ is not just a worst-case bound ---
 by the equalization property, it is achieved for every source distribution, including Gaussian, uniform,
 Laplace, and the empirical distributions observed in trained networks.
@@ -410,9 +422,13 @@ $w(x)^2 f(x)/x^2$ replacing $w(x)^2 f(x)/\E[X^2]$.
 
 \begin{remark}[High-Resolution Regime]
 The proof uses Bennett's high-resolution integral approximation, which is asymptotically exact
-as $N \to \infty$. For finite~$N$, Theorem~\ref{thm:exact-msre} provides the exact (non-asymptotic)
-per-cell MSRE: the ratio of exact to approximate MSRE is $0.9997$ at $N = 256$ (Table~\ref{tab:msre-verify}).
-The minimax conclusion holds for all practical quantizer sizes ($N \geq 16$).
+as $N \to \infty$. Both the equalization property (Step~1) and the coverage constraint argument
+(Step~2) operate in this continuous limit. The theorem is therefore an \emph{asymptotic} result.
+For finite~$N$, Theorem~\ref{thm:exact-msre} verifies that the exact per-cell MSRE matches
+$\varepsilon^2/12$ to within $0.03\%$ at $N = 256$ (Table~\ref{tab:msre-verify}), confirming
+that the approximation is excellent for practical quantizer sizes. However, we have not formally
+proved that the minimax \emph{ordering} (log-uniform beats all alternatives) holds for small~$N$;
+the finite-$N$ evidence is numerical, not analytic.
 \end{remark}
 
 \begin{remark}[Domain Restriction and Zero Handling]
@@ -738,6 +754,9 @@ values, correcting an earlier figure of 25.1~dB that arose from an error in the 
 
 This section presents gate-level hardware models anchored to published silicon data from
 Horowitz (ISSCC 2014), Johnson (2018 ELMA ASIC at 28nm), and NVIDIA architecture whitepapers.
+\textbf{All gate counts are NAND2-equivalent estimates.} No RTL has been written and no
+synthesis has been performed. The numbers should be treated as order-of-magnitude guidance,
+not as measured silicon results.
 
 \subsection{Reference Data}
 
@@ -990,24 +1009,30 @@ GPT-2 Large  & FP32 (baseline)   & 15.436 & ---        \\
 \end{table}
 
 \textbf{Weight-only PTQ.}
-QF8 consistently matches or outperforms MXFP8 across all three model sizes.
+QF8 consistently matches or outperforms MXFP8 across all three model sizes,
+with degradation ${\leq}0.2\%$ everywhere.
 At GPT-2 Medium (355M), the gap is most pronounced: QF8 degrades by only $-0.01\%$
-vs.\ MXFP8's $+0.56\%$.
+vs.\ MXFP8's $+0.56\%$. These results use a single evaluation run per configuration
+(no error bars); the perplexity differences at Small and Large are small enough
+($0.03$--$0.07$ perplexity points) that they should be interpreted as ``comparable''
+rather than as evidence of a definitive advantage for any format.
 
-\textbf{W8A8 PTQ.}
-Quantizing activations reveals a nuance: at 124M parameters, QF8's activation penalty
-($+1.73\%$) exceeds MXFP8's ($+0.22\%$), because log-uniform spacing allocates precision
-uniformly across magnitudes while activations often concentrate near zero.
-However, this gap narrows with scale: at 774M parameters, QF8 W8A8 degradation is only
-$+0.11\%$ --- essentially identical to weight-only and comparable to MXFP8's $+0.23\%$.
+\textbf{W8A8 PTQ: a known limitation.}
+Quantizing activations exposes a structural weakness of log-uniform spacing.
+At GPT-2 Small (124M), QF8's W8A8 penalty is $+1.73\%$ --- significantly worse than
+MXFP8's $+0.22\%$ ($8\times$ larger). At GPT-2 Medium (355M), QF8 is still $2.2\times$
+worse than MXFP8 ($+1.43\%$ vs.\ $+0.65\%$). The cause is fundamental:
+log-uniform spacing allocates precision uniformly across magnitudes,
+but post-GELU and post-LayerNorm activations concentrate near zero,
+where the log grid's resolution is coarsest. At GPT-2 Large (774M),
+QF8's W8A8 penalty drops to $+0.11\%$ (comparable to MXFP8's $+0.23\%$),
+but with only three model sizes and no error bars, this apparent scaling trend
+is not statistically robust.
 
-\textbf{The case for relative error.}
-INT8 achieves $+6.6$~dB higher SQNR than QF8 on per-tensor benchmarks
-(Table~\ref{tab:sqnr-pretrained}), yet delivers comparable or worse perplexity on
-weight-only PTQ (Table~\ref{tab:ptq-wonly}). At GPT-2 Medium, INT8's perplexity penalty
-($+0.02\%$) exceeds QF8's ($-0.01\%$) despite INT8's large SQNR advantage.
-This supports the theoretical motivation: neural network quality is better predicted by
-\emph{relative} error (NMSE, which QF8 minimizes) than absolute error (MSE, which INT8 minimizes).
+\textbf{Implication:} QF8's theoretical ``no calibration'' advantage applies to
+\emph{weight} quantization. For W8A8 deployment, activation-aware techniques
+(e.g., SmoothQuant-style channel balancing) would likely be needed,
+partially offsetting the calibration-free benefit.
 
 \subsection{Quantization-Aware Training}
 \label{subsec:qat}
@@ -1046,10 +1071,13 @@ FP8 E4M3        & 2.5401 & 2.5478 & $+0.0028$ ($+0.11\%$)       \\
 \end{tabular}
 \end{table}
 
-QF8 matches FP32 validation loss to within noise ($-0.02\%$), while FP8 E4M3 incurs a
-small penalty ($+0.11\%$). This model is too small (124K parameters, 500 steps) to be
-conclusive on its own, but combined with the PTQ results above it confirms that QF8
-does not impair gradient flow during training.
+At 124K parameters and 500 steps, this experiment is a smoke test, not a benchmark.
+The validation loss differences ($-0.02\%$ for QF8, $+0.11\%$ for FP8 vs.\ FP32)
+are within the step-to-step variance of the loss curve ($\sim\!0.19$ over the final 200 steps)
+and should not be interpreted as evidence of QF8 superiority.
+The only defensible conclusion is that STE-based QF8 quantization does not catastrophically
+break training at this toy scale. Full-scale QAT validation remains future work
+(Section~\ref{sec:future}).
 
 \subsection{Synthetic Benchmarks}
 \label{subsec:synthetic}
@@ -1170,7 +1198,9 @@ optimality analysis for ML workloads.
   \item \textbf{Quantified advantage:} $+6.6$~dB / $4.6\times$ NMSE improvement over FP8 E4M3 at
     identical storage cost ($8.25$ bits/element). The advantage is mathematical: it follows from
     $16$ vs.\ $8$ levels per octave.
-  \item \textbf{Hardware cost analysis:} $3.5\times$ cheaper multiplier than FP8 ($66$ vs.\ $231$ gates).
+  \item \textbf{Hardware cost analysis:} Estimated ${\sim}2\times$ cheaper full MAC unit than FP8
+    ($650$ vs.\ $1350$ gates), with the multiply path itself $3.5\times$ cheaper ($66$ vs.\ $231$ gates).
+    These are NAND2-equivalent estimates, not synthesis results.
 \end{enumerate}
 
 \subsection{The One-Sentence Pitch}
@@ -1190,14 +1220,23 @@ yielding $2\times$ the precision per octave of FP8 at comparable hardware cost.}
 
 \subsection{Scaling Validation}
 
-PTQ results on GPT-2 Small through Large (124M--774M parameters) validate the format
-at inference time. The remaining gap is full-scale QAT:
+Weight-only PTQ results on GPT-2 Small through Large (124M--774M parameters) validate QF8
+for inference-time weight quantization. Several gaps remain:
 \begin{enumerate}[leftmargin=2em]
-  \item GPT-2 Small (124M parameters, 300k steps) with STE-based QAT --- does the training
-    advantage observed on TinyGPT-2 hold at standard scale?
-  \item Larger models (355M+) --- do any gradient-related instabilities emerge during training?
-  \item Activation-aware calibration (e.g., SmoothQuant-style channel balancing) to reduce
-    QF8's W8A8 penalty at small model sizes.
+  \item \textbf{W8A8 activation handling.} QF8's log-uniform grid is structurally suboptimal for
+    near-zero-concentrated activations (Section~\ref{subsec:ptq}). Activation-aware calibration
+    (e.g., SmoothQuant-style channel balancing) is the most promising mitigation, but would
+    reintroduce per-layer calibration --- partially offsetting the format's calibration-free appeal.
+    Characterizing the zero-code and underflow rates for activation tensors would clarify whether
+    the penalty is due to clipping, underflow, or the spacing itself.
+  \item \textbf{Full-scale QAT.} The TinyGPT-2 experiment (124K parameters, 500 steps) is a
+    smoke test only. GPT-2 Small (124M, 300k steps) QAT with multiple seeds and error bars
+    is needed before any training claim can be made.
+  \item \textbf{Error bars.} All PTQ perplexity results are single-run. Perplexity differences
+    at the $0.01$--$0.1\%$ level require confidence intervals (e.g., multiple evaluation strides
+    or bootstrap resampling) to be meaningful.
+  \item \textbf{RTL synthesis.} Hardware gate counts are NAND2-equivalent estimates. Actual
+    synthesis at 7nm or 28nm would validate (or correct) the claimed area and power advantages.
 \end{enumerate}
 
 \subsection{Gradient Quantization}
@@ -1272,7 +1311,7 @@ for gradients.
   \item Micikevicius, P. et al. (2022). ``FP8 Formats for Deep Learning.'' arXiv:2209.05433.
   \item Rouhani, B. et al. (2023). ``Microscaling Data Formats for Deep Learning.'' arXiv:2310.10537.
   \item Dettmers, T. et al. (2023). ``QLoRA: Efficient Finetuning of Quantized LLMs.'' arXiv:2305.14314.
-  \item Gustafson, J. \& Yonemoto, I. (2017). ``Beating Floating Point at its Own Game: Posit Arithmetic.''
+  \item Gustafson, J. \& Yonemoto, I. (2017). ``Beating Floating Point at its Own Game: Posit Arithmetic.'' Supercomputing Frontiers and Innovations 4(2):71--86.
   \item Horowitz, M. (2014). ``Computing's Energy Problem (and what we can do about it).'' ISSCC.
   \item Jouppi, N. et al. (2017). ``In-Datacenter Performance Analysis of a Tensor Processing Unit.'' ISCA.
   \item Kingsbury, N. \& Rayner, P. (1971). ``Digital filtering using logarithmic arithmetic.'' Electronics Letters.
