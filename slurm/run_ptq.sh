@@ -39,8 +39,8 @@ echo "==========================================="
 module load python
 mamba activate quake-float-8
 
-# HF cache on scratch (home has limited space)
-export HF_HOME="/n/holyscratch01/schwartz_lab/$USER/huggingface_cache"
+# HF cache on lab storage (model weights are ~60GB)
+export HF_HOME="/n/holylabs/schwartz_lab/Lab/neverett/quake-float-8/huggingface_cache"
 mkdir -p "$HF_HOME"
 
 # All models are fully open — no HF auth needed
