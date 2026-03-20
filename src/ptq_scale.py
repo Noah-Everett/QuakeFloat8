@@ -181,7 +181,7 @@ def measure_sqnr(model_name: str, label: str) -> list[dict]:
     print(f"{'='*60}")
 
     model = AutoModelForCausalLM.from_pretrained(
-        model_name, torch_dtype=torch.float32,
+        model_name, dtype=torch.float32,
         low_cpu_mem_usage=True, trust_remote_code=True,
     )
     model.eval()
@@ -327,7 +327,7 @@ def run_ptq_perplexity(model_name: str, label: str, device: str) -> list[dict]:
         print(f"{'='*60}")
 
         model = AutoModelForCausalLM.from_pretrained(
-            model_name, torch_dtype=infer_dtype,
+            model_name, dtype=infer_dtype,
             low_cpu_mem_usage=True, trust_remote_code=True,
             device_map="auto" if device == "cuda" else None,
         )
