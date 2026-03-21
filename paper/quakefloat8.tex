@@ -645,7 +645,7 @@ this extra factor converts the erroneous $\varepsilon^2/2$ to the correct $\vare
 a factor of 6 correction.
 \end{remark}
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{Numerical verification: exact MSRE vs.\ approximations.}
 \label{tab:msre-verify}
@@ -686,7 +686,7 @@ For $X \sim \mathrm{LogNormal}(0, \sigma^2)$ quantized to $N$ levels:
 This result is significant because MSRE is the natural metric for floating-point systems ---
 it measures relative accuracy, which is what determines model quality.
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{MSRE and MSE ratios (uniform / log) for LogNormal($0, \sigma^2$), $N = 256$.}
 \label{tab:separation}
@@ -715,7 +715,7 @@ where both quantizers are comparable.
 
 \subsection{QF8 vs.\ FP8 E4M3: Detailed Comparison}
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{Within-binade precision comparison.}
 \label{tab:qf8-vs-fp8-binade}
@@ -776,7 +776,7 @@ not as measured silicon results.
 
 The core QF8 advantage: multiplication reduces to a 7-bit integer addition plus sign XOR.
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{QF8 multiply-path gate count.}
 \label{tab:qf8-multiply}
@@ -803,7 +803,7 @@ The recommended design point: 6-bit barrel shifter and 32-bit carry-save Kulisch
 for intra-block accumulation, with block-pair results reduced via FP32 arithmetic
 (matching MX-format accelerator practice).
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{QF8-Medium MAC unit breakdown (7nm, 1 GHz).}
 \label{tab:qf8-medium}
@@ -824,7 +824,7 @@ Control/zero-detect/mux                  & 50   & 2.0  \\
 
 \subsection{Master Comparison}
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{Per-MAC unit comparison at 7nm, 1 GHz.}
 \label{tab:master-comparison}
@@ -841,7 +841,7 @@ Critical path (gates)   & 24--30& 35--45& 38--48 & 55--70 & \textbf{20--26}\\
 \end{tabular}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{QF8-Medium savings ratios vs.\ each baseline.}
 \label{tab:savings-ratios}
@@ -858,7 +858,7 @@ Latency improvement & 55--65\% & 35--45\% & 25--35\% & $\sim$5--10\% \\
 
 \subsection{Systolic Array Scaling ($128 \times 128$)}
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{128$\times$128 systolic array estimates at 7nm, 1~GHz.}
 \label{tab:systolic}
@@ -879,7 +879,7 @@ TOPS/mm$^2$            & 66.9 & 37.3 & 20.9 & 8.4  & \textbf{76.2} \\
 The log-domain advantage scales differently with bit-width because the multiplier is $O(n^2)$
 while the adder is $O(n)$:
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{Log-domain break-even across bit widths.}
 \label{tab:breakeven}
@@ -931,7 +931,7 @@ We apply each format's block-scaled quantization round-trip to all 48 weight ten
 (2D+, excluding embeddings) of pretrained GPT-2 Small (124M parameters) and measure
 SQNR per tensor.
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{Per-layer SQNR on GPT-2 Small pretrained weights (48 tensors).}
 \label{tab:sqnr-pretrained}
@@ -961,7 +961,7 @@ should be independent of the weight distribution. To test this, we measure per-l
 across 15 pretrained models spanning 5~architectures, 7~model families, and parameter counts
 from 60M to 1.3B:
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{Cross-model SQNR stability (1{,}481 weight tensors from 15 models).}
 \label{tab:equalization}
@@ -980,7 +980,7 @@ Models tested: GPT-2 (Small, Medium, Large), OPT (125M, 350M, 1.3B),
 Pythia (160M, 410M, 1B), BERT (Base, Large), RoBERTa-Base, DistilBERT,
 T5 (Small, Base).
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth]{fig_equalization_histogram.pdf}
 \caption{SQNR distribution across all 1{,}481 weight tensors from 15 models.
@@ -995,7 +995,7 @@ $5\times$ lower than INT8's $0.54$~dB.
 Figure~\ref{fig:equalization-histogram} makes this visible: QF8 collapses to a single
 spike, while INT8 is spread across a ${\sim}9$~dB range.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth]{fig_equalization_kurtosis.pdf}
 \caption{SQNR vs.\ weight distribution kurtosis (log scale).
@@ -1022,7 +1022,7 @@ For \textbf{weight-only} PTQ, all linear layer weights undergo a quantization ro
 before inference. For \textbf{W8A8}, activations (inputs to each \texttt{nn.Linear}) are
 additionally quantized via dynamic block scaling at inference time using forward pre-hooks.
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{Weight-only PTQ perplexity on WikiText-2 (sliding window, stride 512).}
 \label{tab:ptq-wonly}
@@ -1048,7 +1048,7 @@ GPT-2 Large  & FP32 (baseline)   & 15.436 & ---        \\
 \end{tabular}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{W8A8 PTQ perplexity on WikiText-2 (weights + activations quantized).}
 \label{tab:ptq-w8a8}
@@ -1087,7 +1087,7 @@ To validate that QF8's advantage holds at the scale where quantization is most r
 we evaluate weight-only PTQ on three additional models up to 7B parameters.
 All models are fully open-weight and use the same block-scaled quantization protocol.
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{Weight-only PTQ perplexity at 7B scale (WikiText-2, stride 512).}
 \label{tab:ptq-7b}
@@ -1156,7 +1156,7 @@ further conclusions. Full-scale QAT remains future work (Section~\ref{sec:future
 To confirm the distribution-independence predicted by the equalization property, we measure
 SQNR on random matrices and synthetic distributions:
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{Matrix multiplication SQNR across sizes (vs.\ float64 ground truth).}
 \label{tab:matmul-sqnr}
@@ -1171,7 +1171,7 @@ $128 \times 256 \times 128$  & 52.6 dB & 130.8 dB & 28.5 dB & \textbf{35.1 dB} \
 \end{tabular}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{SQNR across value distributions.}
 \label{tab:dist-sqnr}
@@ -1205,7 +1205,7 @@ The closest prior work is Johnson's ``Rethinking Floating Point for Deep Learnin
 with Kulisch accumulation. QF8's core mechanism --- log-domain multiply via integer addition
 with linear accumulation --- \emph{is} Johnson's ELMA.
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{QF8 vs.\ Johnson's ELMA.}
 \label{tab:vs-johnson}
@@ -1269,6 +1269,10 @@ optimality analysis for ML workloads.
   \item \textbf{Quantified advantage:} $+6.6$~dB / $4.6\times$ NMSE improvement over FP8 E4M3 at
     identical storage cost ($8.25$ bits/element). The advantage is mathematical: it follows from
     $16$ vs.\ $8$ levels per octave.
+  \item \textbf{Empirical confirmation of equalization:} Across 1{,}481 weight tensors from
+    15 models and 5~architectures, QF8's SQNR is $38.1 \pm 0.10$~dB with near-zero
+    dependence on weight distribution shape ($r = -0.08$ vs.\ kurtosis).
+    Weight-only PTQ at 7B scale shows ${\leq}0.03\%$ perplexity degradation.
   \item \textbf{Hardware cost analysis:} Estimated ${\sim}2\times$ cheaper full MAC unit than FP8
     ($650$ vs.\ $1350$ gates), with the multiply path itself $3.5\times$ cheaper ($66$ vs.\ $231$ gates).
     These are NAND2-equivalent estimates, not synthesis results.
