@@ -1141,50 +1141,14 @@ is not statistically robust.
 (e.g., SmoothQuant-style channel balancing) would likely be needed,
 partially offsetting the calibration-free benefit.
 
-\subsection{Quantization-Aware Training}
+\subsection{Quantization-Aware Training (Preliminary)}
 \label{subsec:qat}
 
-As a complementary validation, we train a TinyGPT-2 model from scratch with STE-based
-quantization-aware training (QAT).
-
-\begin{table}[h]
-\centering
-\caption{TinyGPT-2 QAT configuration.}
-\label{tab:training-config}
-\begin{tabular}{@{}ll@{}}
-\toprule
-Parameter & Value \\
-\midrule
-Model       & TinyGPT-2 ($d_{\text{model}} = 128$, heads $= 4$, layers $= 2$, $d_{\text{ff}} = 512$) \\
-Vocabulary  & 256 (byte-level), $\text{seq\_len} = 128$ \\
-Training    & 500 steps, batch $= 4$, lr $= 3 \times 10^{-4}$, cosine decay \\
-Quantization& Block-scaled round-trip + STE, block\_size $= 32$ \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{table}[h]
-\centering
-\caption{TinyGPT-2 QAT results.}
-\label{tab:qat-results}
-\begin{tabular}{@{}lccc@{}}
-\toprule
-Format & Final Train Loss & Final Val Loss & $\Delta_{\text{val}}$ vs FP32 \\
-\midrule
-FP32            & 2.5388 & 2.5450 & ---                          \\
-FP8 E4M3        & 2.5401 & 2.5478 & $+0.0028$ ($+0.11\%$)       \\
-\textbf{QF8}    & \textbf{2.5388} & \textbf{2.5445} & $\mathbf{-0.0005}$ ($-0.02\%$) \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-At 124K parameters and 500 steps, this experiment is a smoke test, not a benchmark.
-The validation loss differences ($-0.02\%$ for QF8, $+0.11\%$ for FP8 vs.\ FP32)
-are within the step-to-step variance of the loss curve ($\sim\!0.19$ over the final 200 steps)
-and should not be interpreted as evidence of QF8 superiority.
-The only defensible conclusion is that STE-based QF8 quantization does not catastrophically
-break training at this toy scale. Full-scale QAT validation remains future work
-(Section~\ref{sec:future}).
+As a preliminary check, we trained a TinyGPT-2 model (124K parameters, 500 steps)
+with STE-based QAT. Both QF8 and FP8 E4M3 matched FP32 validation loss within
+noise (${\leq}0.1\%$). This confirms that STE-based QF8 quantization does not
+catastrophically break training, but the experiment is too small to draw any
+further conclusions. Full-scale QAT remains future work (Section~\ref{sec:future}).
 
 \subsection{Synthetic Benchmarks}
 \label{subsec:synthetic}
