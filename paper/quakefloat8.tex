@@ -16,6 +16,7 @@
 \usepackage{microtype}
 \usepackage{tabularx}
 \usepackage{array}
+\usepackage{graphicx}
 
 % ── Styling ──
 \hypersetup{colorlinks=true, linkcolor=blue!60!black, citecolor=green!50!black, urlcolor=blue!70!black}
@@ -979,9 +980,32 @@ Models tested: GPT-2 (Small, Medium, Large), OPT (125M, 350M, 1.3B),
 Pythia (160M, 410M, 1B), BERT (Base, Large), RoBERTa-Base, DistilBERT,
 T5 (Small, Base).
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{fig_equalization_histogram.pdf}
+\caption{SQNR distribution across all 1{,}481 weight tensors from 15 models.
+QF8 (green) is a single spike at 38.1~dB ($\sigma = 0.10$~dB).
+MXFP8 (red) clusters at 31.5~dB with $3\times$ more variance.
+INT8 (blue) spreads over a ${\sim}9$~dB range, reflecting distribution-dependent error.}
+\label{fig:equalization-histogram}
+\end{figure}
+
 QF8's SQNR standard deviation across \emph{all} 1{,}481 tensors is $0.10$~dB ---
-$5\times$ lower than INT8's $0.54$~dB. The kurtosis correlation column quantifies
-dependence on weight distribution shape: INT8's SQNR correlates with kurtosis
+$5\times$ lower than INT8's $0.54$~dB.
+Figure~\ref{fig:equalization-histogram} makes this visible: QF8 collapses to a single
+spike, while INT8 is spread across a ${\sim}9$~dB range.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{fig_equalization_kurtosis.pdf}
+\caption{SQNR vs.\ weight distribution kurtosis (log scale).
+QF8's correlation is $r = -0.08$ (flat line --- distribution-independent).
+INT8's correlation is $r = -0.49$ (quality degrades for heavy-tailed distributions).}
+\label{fig:equalization-kurtosis}
+\end{figure}
+
+The kurtosis correlation (Figure~\ref{fig:equalization-kurtosis}, Table~\ref{tab:equalization})
+quantifies dependence on weight distribution shape: INT8's SQNR correlates with kurtosis
 ($r = -0.49$), meaning its quality degrades for heavy-tailed distributions.
 QF8's correlation is $r = -0.08$ --- effectively zero. This confirms the
 equalization property: QF8's quantization error is distribution-independent.
