@@ -1,0 +1,5378 @@
+[
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.0.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.14
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.0.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 44.66
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.0.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.32
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.0.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.17
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.0.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 44.65
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.0.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 37.97,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 44.21
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.1.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.32
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.1.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.22
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.1.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.34
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.1.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.23
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.1.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.47
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.1.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.56,
+    "int8_sqnr": 44.58
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.2.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.23
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.2.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.15
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.2.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.55,
+    "int8_sqnr": 45.33
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.2.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.06,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.23
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.2.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.2.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 37.98,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 44.41
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.3.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.13
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.3.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.19
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.3.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.55,
+    "int8_sqnr": 45.31
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.3.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.5,
+    "int8_sqnr": 45.19
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.3.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.38
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.3.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 37.96,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 44.67
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.4.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.19
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.4.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.22
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.4.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.55,
+    "int8_sqnr": 45.31
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.4.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.06,
+    "mxfp8_sqnr": 31.56,
+    "int8_sqnr": 45.35
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.4.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.38
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.4.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.03,
+    "mxfp8_sqnr": 31.55,
+    "int8_sqnr": 44.87
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.5.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.21
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.5.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.5.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.31
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.5.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.06,
+    "mxfp8_sqnr": 31.55,
+    "int8_sqnr": 45.36
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.5.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.38
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.5.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 44.94
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.6.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.6.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.26
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.6.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.3
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.6.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.6.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.4
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.6.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 44.84
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.7.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.18
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.7.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.19
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.7.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.29
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.7.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.4
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.7.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.7.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 44.95
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.8.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.26
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.8.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.25
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.8.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.31
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.8.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.8.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.8.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.01
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.9.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.9.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.26
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.9.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.33
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.9.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.39
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.9.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.9.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 44.99
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.10.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.28
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.10.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.27
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.10.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.29
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.10.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.4
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.10.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.39
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.10.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.01
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.11.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.29
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.11.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.28
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.11.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.06,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.3
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.11.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.4
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.11.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.38
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.11.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.03
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.12.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.31
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.12.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.27
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.12.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.27
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.12.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.12.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.39
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.12.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.02
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.13.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.29
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.13.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.27
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.13.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.29
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.13.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.13.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.39
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.13.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.04
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.14.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 44.89
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.14.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.23
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.14.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.31
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.14.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.14.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.39
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.14.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.06
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.15.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.32
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.15.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.06,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.3
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.15.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.31
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.15.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.15.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.37
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.15.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.07
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.16.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.3
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.16.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.29
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.16.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.34
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.16.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.16.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.37
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.16.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.06
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.17.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.3
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.17.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.28
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.17.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.32
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.17.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.17.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.37
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.17.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.02
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.18.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.25
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.18.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.16
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.18.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.33
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.18.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.18.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.37
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.18.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.09
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.19.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.33
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.19.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.28
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.19.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.34
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.19.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.4
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.19.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.38
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.19.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.03
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.20.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 44.79
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.20.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.03
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.20.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.35
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.20.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.20.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.39
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.20.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.02
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.21.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.29
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.21.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.23
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.21.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.34
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.21.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.39
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.21.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.39
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.21.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 44.93
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.22.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 44.94
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.22.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.12
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.22.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.32
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.22.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.22.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.4
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.22.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.0
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.23.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 44.95
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.23.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.05
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.23.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.34
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.23.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.38
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.23.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.4
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.23.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 44.97
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.24.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.27
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.24.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.16
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.24.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.06,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.31
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.24.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.24.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.4
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.24.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 44.91
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.25.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 44.82
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.25.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.06,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 44.95
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.25.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.33
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.25.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.4
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.25.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.25.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 44.93
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.26.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.0
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.26.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.05
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.26.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.27
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.26.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.26.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.4
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.26.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.06
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.27.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.06
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.27.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.03,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 44.28
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.27.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.28
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.27.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.27.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.4
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.27.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 44.93
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.28.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.21
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.28.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.0
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.28.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.29
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.28.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.28.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.4
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.28.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 44.92
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.29.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 44.51
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.29.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 37.94,
+    "mxfp8_sqnr": 31.5,
+    "int8_sqnr": 41.94
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.29.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.26
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.29.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.55,
+    "int8_sqnr": 45.3
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.29.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.33
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.29.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 44.7
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.30.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.03,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 43.7
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.30.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 37.01,
+    "mxfp8_sqnr": 31.07,
+    "int8_sqnr": 38.97
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.30.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.30.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.30.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.33
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.30.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 44.52
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.31.self_attn.q_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 43.23
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.31.self_attn.k_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 46.19
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.31.self_attn.v_proj.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.06
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.31.self_attn.dense.weight",
+    "numel": 6553600,
+    "qf8_sqnr": 38.03,
+    "mxfp8_sqnr": 31.59,
+    "int8_sqnr": 45.16
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.31.mlp.fc1.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.34
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "layer": "model.layers.31.mlp.fc2.weight",
+    "numel": 26214400,
+    "qf8_sqnr": 38.03,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 43.96
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.0.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 37.82,
+    "mxfp8_sqnr": 31.49,
+    "int8_sqnr": 43.2
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.0.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 37.79,
+    "mxfp8_sqnr": 31.5,
+    "int8_sqnr": 42.74
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.0.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.03,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 43.69
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.0.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 44.85
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.0.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.21
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.0.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.25
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.0.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.23
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.1.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.01,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 44.84
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.1.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 37.92,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 43.87
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.1.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.01,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 44.36
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.1.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.22
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.1.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.28
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.1.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.29
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.1.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.27
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.2.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.1
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.2.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 44.84
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.2.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.14
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.2.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.3
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.2.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.31
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.2.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.33
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.2.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.3
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.3.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.3.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.04
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.3.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.28
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.3.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.36
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.3.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.32
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.3.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.33
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.3.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.31
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.4.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.19
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.4.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.08
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.4.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.27
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.4.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.35
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.4.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.29
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.4.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.3
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.4.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.27
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.5.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.5.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.13
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.5.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.29
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.5.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.38
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.5.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.3
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.5.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.29
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.5.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.27
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.6.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.2
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.6.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.07
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.6.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.25
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.6.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.36
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.6.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.28
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.6.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.26
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.6.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.21
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.7.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.16
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.7.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.03
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.7.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.22
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.7.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.36
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.7.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.27
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.7.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.26
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.7.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.23
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.8.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.8.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.14
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.8.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.8.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.38
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.8.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.25
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.8.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.8.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.25
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.9.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.17
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.9.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.09
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.9.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.22
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.9.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.39
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.9.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.9.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.26
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.9.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.26
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.10.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.2
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.10.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.17
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.10.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.19
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.10.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.38
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.10.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.2
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.10.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.21
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.10.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.18
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.11.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.2
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.11.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.13
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.11.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.19
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.11.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.34
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.11.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.17
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.11.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.2
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.11.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.16
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.12.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.01
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.12.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.02
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.12.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.11
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.12.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.35
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.12.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.19
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.12.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.23
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.12.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.2
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.13.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.13.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.12
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.13.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.2
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.13.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.4
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.13.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.16
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.13.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.21
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.13.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.16
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.14.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.18
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.14.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.01
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.14.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.13
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.14.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.38
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.14.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.11
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.14.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.2
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.14.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.15
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.15.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.08
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.15.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 44.85
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.15.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.13
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.15.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.38
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.15.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.16
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.15.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.15.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.23
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.16.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.23
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.16.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.04
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.16.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.13
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.16.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.4
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.16.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.13
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.16.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.23
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.16.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.17.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.22
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.17.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.05
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.17.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.08
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.17.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.38
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.17.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.16
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.17.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.25
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.17.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.22
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.18.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.22
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.18.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.03
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.18.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.03
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.18.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.38
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.18.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.2
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.18.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.27
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.18.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.21
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.19.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.19.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.0
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.19.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.13
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.19.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.4
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.19.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.25
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.19.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.3
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.19.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.22
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.20.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.21
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.20.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 44.97
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.20.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.19
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.20.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.20.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.31
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.20.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.33
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.20.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.29
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.21.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.21.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.01
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.21.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.16
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.21.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.21.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.34
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.21.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.35
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.21.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.34
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.22.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.22.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.04
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.22.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.27
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.22.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.22.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.34
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.22.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.36
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.22.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.36
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.23.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.22
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.23.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.03
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.23.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.26
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.23.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.23.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.36
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.23.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.37
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.23.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.37
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.24.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.24.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.5,
+    "int8_sqnr": 45.01
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.24.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.28
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.24.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.24.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.36
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.24.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.36
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.24.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.38
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.25.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.25.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.03
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.25.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.25.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.25.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.35
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.25.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.36
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.25.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.38
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.26.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.22
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.26.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 44.96
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.26.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.19
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.26.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.26.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.35
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.26.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.35
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.26.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.38
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.27.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.2
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.27.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.09
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.27.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.28
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.27.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.27.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.33
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.27.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.35
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.27.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.36
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.28.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.18
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.28.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 44.71
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.28.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.11
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.28.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.28.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.33
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.28.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.35
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.28.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.35
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.29.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.04
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.29.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 44.77
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.29.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.07
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.29.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.4
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.29.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.33
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.29.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.36
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.29.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.33
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.30.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.13
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.30.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 44.78
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.30.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 44.91
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.30.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.30.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.32
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.30.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.35
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.30.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.21
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.31.self_attn.q_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.13
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.31.self_attn.k_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 44.73
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.31.self_attn.v_proj.weight",
+    "numel": 4194304,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.51,
+    "int8_sqnr": 44.89
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.31.self_attn.o_proj.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.06,
+    "mxfp8_sqnr": 31.5,
+    "int8_sqnr": 45.51
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.31.mlp.gate_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.33
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.31.mlp.up_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.33
+  },
+  {
+    "model": "Mistral-7B",
+    "layer": "model.layers.31.mlp.down_proj.weight",
+    "numel": 58720256,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 44.99
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.0.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.0.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.0.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.0.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.1.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.1.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.1.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.1.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.2.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.2.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.2.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.2.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.3.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.3.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.3.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.3.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.4.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.4.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.4.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.4.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.5.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.5.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.5.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.5.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.6.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.6.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.6.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.6.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.7.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.7.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.7.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.7.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.8.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.8.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.8.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.8.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.9.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.9.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.9.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.9.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.10.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.10.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.10.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.10.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.11.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.11.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.11.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.11.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.12.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.12.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.12.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.12.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.13.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.13.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.13.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.13.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.14.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.14.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.14.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.14.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.15.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.15.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.15.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.15.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.16.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.16.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.16.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.16.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.17.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.17.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.17.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.17.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.18.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.18.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.18.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.18.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.19.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.19.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.19.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.19.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.20.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.20.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.20.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.20.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.21.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.21.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.21.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.21.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.22.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.22.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.22.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.22.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.23.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.43
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.23.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.23.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.23.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.24.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.24.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.24.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.24.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.25.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.25.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.25.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.25.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.26.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.26.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.26.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.26.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.27.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.27.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.27.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.27.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.28.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.28.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.28.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.28.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.29.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.29.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.29.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.29.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.30.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.30.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.30.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.30.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.31.self_attention.query_key_value.weight",
+    "numel": 21229568,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.31.self_attention.dense.weight",
+    "numel": 20647936,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.31.mlp.dense_h_to_4h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Falcon-7B",
+    "layer": "transformer.h.31.mlp.dense_4h_to_h.weight",
+    "numel": 82591744,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.0.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.39
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.0.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.55,
+    "int8_sqnr": 45.4
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.0.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.0.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.56,
+    "int8_sqnr": 45.4
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.1.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.1.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.55,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.1.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.1.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.32
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.2.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.55,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.2.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.55,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.2.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.2.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.37
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.3.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.3.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.55,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.3.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.3.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.26
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.4.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.4.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.45
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.4.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.43
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.4.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.25
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.5.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.5.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.45
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.5.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.5.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.23
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.6.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.6.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.6.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.6.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.21
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.7.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.7.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.45
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.7.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.7.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.19
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.8.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.4
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.8.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.8.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.8.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.21
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.9.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.39
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.9.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.9.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.9.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.21
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.10.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.36
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.10.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.43
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.10.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.10.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.25
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.11.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.31
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.11.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.11.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.11.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.23
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.12.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.3
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.12.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.43
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.12.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.12.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.26
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.13.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.28
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.13.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.43
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.13.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.13.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.28
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.14.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.22
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.14.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.14.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.14.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.25
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.15.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.2
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.15.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.15.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.15.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.23
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.16.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.06
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.16.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.16.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.16.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.24
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.17.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 44.94
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.17.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.17.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.17.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.21
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.18.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 44.95
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.18.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.18.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.18.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.3
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.19.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 44.85
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.19.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.43
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.19.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.19.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.25
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.20.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 44.85
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.20.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.43
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.20.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.20.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.32
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.21.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 44.83
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.21.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.21.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.21.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.33
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.22.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 44.81
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.22.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.22.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.22.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.36
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.23.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 44.82
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.23.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.23.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.23.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.37
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.24.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 44.77
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.24.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.24.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.24.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.39
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.25.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 44.78
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.25.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.25.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.25.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.39
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.26.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 44.77
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.26.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.26.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.26.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.38
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.27.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 44.79
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.27.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.27.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.27.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.32
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.28.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.55,
+    "int8_sqnr": 44.81
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.28.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.43
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.28.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.28.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.21
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.29.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 44.84
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.29.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.44
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.29.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.29.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.16
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.30.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 44.78
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.30.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.43
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.30.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.42
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.30.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.0
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.31.attention.query_key_value.weight",
+    "numel": 50331648,
+    "qf8_sqnr": 38.04,
+    "mxfp8_sqnr": 31.54,
+    "int8_sqnr": 44.85
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.31.attention.dense.weight",
+    "numel": 16777216,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.52,
+    "int8_sqnr": 45.45
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.31.mlp.dense_h_to_4h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 45.41
+  },
+  {
+    "model": "Pythia-6.9B",
+    "layer": "gpt_neox.layers.31.mlp.dense_4h_to_h.weight",
+    "numel": 67108864,
+    "qf8_sqnr": 38.05,
+    "mxfp8_sqnr": 31.53,
+    "int8_sqnr": 44.87
+  }
+]

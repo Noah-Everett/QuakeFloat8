@@ -1,0 +1,74 @@
+[
+  {
+    "model": "Phi-2 (2.7B)",
+    "model_hf": "microsoft/phi-2",
+    "format": "FP16 baseline",
+    "perplexity": 8.6457
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "model_hf": "microsoft/phi-2",
+    "format": "QF8",
+    "perplexity": 8.6463
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "model_hf": "microsoft/phi-2",
+    "format": "MXFP8 E4M3",
+    "perplexity": 8.6698
+  },
+  {
+    "model": "Phi-2 (2.7B)",
+    "model_hf": "microsoft/phi-2",
+    "format": "INT8",
+    "perplexity": 8.6492
+  },
+  {
+    "model": "Mistral-7B",
+    "model_hf": "mistralai/Mistral-7B-v0.1",
+    "format": "FP16 baseline",
+    "perplexity": 4.7975
+  },
+  {
+    "model": "Mistral-7B",
+    "model_hf": "mistralai/Mistral-7B-v0.1",
+    "format": "QF8",
+    "perplexity": 4.798
+  },
+  {
+    "model": "Mistral-7B",
+    "model_hf": "mistralai/Mistral-7B-v0.1",
+    "format": "MXFP8 E4M3",
+    "perplexity": 4.8087
+  },
+  {
+    "model": "Mistral-7B",
+    "model_hf": "mistralai/Mistral-7B-v0.1",
+    "format": "INT8",
+    "perplexity": 4.7978
+  },
+  {
+    "model": "Pythia-6.9B",
+    "model_hf": "EleutherAI/pythia-6.9b",
+    "format": "FP16 baseline",
+    "perplexity": 8.3512
+  },
+  {
+    "model": "Pythia-6.9B",
+    "model_hf": "EleutherAI/pythia-6.9b",
+    "format": "QF8",
+    "perplexity": 8.3536
+  },
+  {
+    "model": "Pythia-6.9B",
+    "model_hf": "EleutherAI/pythia-6.9b",
+    "format": "MXFP8 E4M3",
+    "perplexity": 8.3667
+  },
+  {
+    "model": "Pythia-6.9B",
+    "model_hf": "EleutherAI/pythia-6.9b",
+    "format": "INT8",
+    "perplexity": 8.3566
+  }
+]
