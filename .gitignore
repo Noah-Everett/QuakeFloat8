@@ -33,6 +33,5 @@ docs/
 reports/
 
 # Slurm logs and cluster venv
-slurm/logs/*.out
-slurm/logs/*.err
+slurm_logs/
 .venv-slurm/
