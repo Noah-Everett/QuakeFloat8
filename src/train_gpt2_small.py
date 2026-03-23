@@ -692,10 +692,10 @@ def main():
         return
 
     # Save report
-    notes_dir = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "notes"
+    results_dir = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "results", "training"
     )
-    save_results(results, os.path.join(notes_dir, "training-results-gpt2-small.md"))
+    save_results(results, os.path.join(results_dir, "gpt2_small_qat.md"))
 
     # Final summary
     elapsed = time.time() - t_start
