@@ -1,7 +1,0 @@
-Traceback (most recent call last):
-  File "/n/home03/neverett/quake-float-8/src/ptq_scale.py", line 471, in <module>
-    main()
-  File "/n/home03/neverett/quake-float-8/src/ptq_scale.py", line 399, in main
-    print(f"VRAM: {torch.cuda.get_device_properties(0).total_mem / 1e9:.1f} GB")
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'torch._C._CudaDeviceProperties' object has no attribute 'total_mem'. Did you mean: 'total_memory'?
