@@ -139,88 +139,102 @@ def qf8_roundtrip_torch(x: torch.Tensor) -> torch.Tensor:
 # 2. Pure PyTorch Quantization: FP8-E4M3 Round-Trip
 # ======================================================================
 
-# Build FP8-E4M3 lookup table as a constant tensor
-def _build_fp8e4m3_lut_tensor():
-    """Build all 128 positive FP8-E4M3 magnitudes as a torch tensor."""
-    bias = 7
+_FP8_BIAS = 7
+_FP8_MAX_VAL = 448.0
+_FP8_LOG2_MAX = math.log2(_FP8_MAX_VAL)
+_FP8_MIN_SUBNORMAL = 2.0 ** (1 - _FP8_BIAS - 3)  # smallest positive: 2^(-9) = 1/512
+
+# Build FP8-E4M3 decode LUT (128 entries, indexed by 7-bit code)
+def _build_fp8e4m3_lut():
     lut = torch.zeros(128, dtype=torch.float32)
     for c in range(128):
         exp = (c >> 3) & 0xF
         man = c & 0x7
         if exp == 15 and man == 7:
-            lut[c] = 448.0       # NaN → clamp to max
+            lut[c] = _FP8_MAX_VAL  # NaN → clamp to max
         elif exp == 0:
-            lut[c] = man * 2.0 ** (1 - bias - 3)   # subnormal
+            lut[c] = man * 2.0 ** (1 - _FP8_BIAS - 3)
         else:
-            lut[c] = (1.0 + man / 8.0) * 2.0 ** (exp - bias)
+            lut[c] = (1.0 + man / 8.0) * 2.0 ** (exp - _FP8_BIAS)
     return lut
 
-
-_FP8_LUT_CPU = _build_fp8e4m3_lut_tensor()
-_FP8_MAX_VAL = 448.0
-_FP8_LOG2_MAX = math.log2(_FP8_MAX_VAL)
-# Midpoints for nearest-code rounding
-_FP8_MID_CPU = (_FP8_LUT_CPU[:-1] + _FP8_LUT_CPU[1:]) / 2.0  # 127 midpoints
-
-# Cache device-specific copies
+_FP8_LUT = _build_fp8e4m3_lut()
 _fp8_lut_cache = {}
-_fp8_mid_cache = {}
-
-
-def _get_fp8_lut(device):
-    """Get FP8 LUT on the right device (cached)."""
-    key = str(device)
-    if key not in _fp8_lut_cache:
-        _fp8_lut_cache[key] = _FP8_LUT_CPU.to(device)
-        _fp8_mid_cache[key] = _FP8_MID_CPU.to(device)
-    return _fp8_lut_cache[key], _fp8_mid_cache[key]
 
 
 def fp8e4m3_roundtrip_torch(x: torch.Tensor) -> torch.Tensor:
     """Block-scaled FP8-E4M3 round-trip entirely in PyTorch (MPS-compatible).
-    
-    Uses searchsorted on the midpoint table for nearest-code encoding,
-    then indexes the LUT for decoding.
+
+    Encodes via arithmetic (floor/round on log2), decodes via small LUT index.
+    No searchsorted needed.
     """
-    fp8_lut, fp8_mid = _get_fp8_lut(x.device)
-    
+    # Cache LUT on device
+    key = str(x.device)
+    if key not in _fp8_lut_cache:
+        _fp8_lut_cache[key] = _FP8_LUT.to(x.device)
+    fp8_lut = _fp8_lut_cache[key]
+
     orig_shape = x.shape
     last = orig_shape[-1]
-    
+
     x2 = x.reshape(-1, last).float()
     rows, cols = x2.shape
-    
+
     pad = (-cols) % BLOCK_SIZE
     if pad > 0:
         x2 = F.pad(x2, (0, pad))
-    
+
     n_blocks = x2.shape[1] // BLOCK_SIZE
     blocks = x2.reshape(rows, n_blocks, BLOCK_SIZE)
-    
+
     # E8M0 shared scale per block
     amax = blocks.abs().amax(dim=-1)
     nz = amax > 0
-    exps = torch.zeros_like(amax)
-    exps[nz] = torch.ceil(torch.log2(amax[nz]) - _FP8_LOG2_MAX)
-    exps = exps.clamp(E8M0_MIN_EXP, E8M0_MAX_EXP)
-    scales = torch.exp2(exps)
-    
+    block_exps = torch.zeros_like(amax)
+    block_exps[nz] = torch.ceil(torch.log2(amax[nz]) - _FP8_LOG2_MAX)
+    block_exps = block_exps.clamp(E8M0_MIN_EXP, E8M0_MAX_EXP)
+    scales = torch.exp2(block_exps)
+
     safe_scales = scales.clamp(min=1e-45)
     scaled = blocks / safe_scales.unsqueeze(-1)
-    
-    signs = torch.sign(scaled)
-    abs_s = scaled.abs()
-    
-    # Flatten abs_s for searchsorted
-    flat_abs = abs_s.reshape(-1)
-    # searchsorted: find nearest FP8 code via midpoint table
-    codes = torch.searchsorted(fp8_mid, flat_abs)
-    codes = codes.clamp(0, 126)  # exclude NaN code (127)
-    
-    # Decode via LUT
-    mags_unscaled = fp8_lut[codes].reshape(abs_s.shape)
+
+    signs = scaled.sign()
+    abs_s = scaled.abs().clamp(max=_FP8_MAX_VAL)
+
+    # --- Encode to 7-bit code = (biased_exp << 3) | mantissa ---
+    log2_abs = torch.log2(abs_s.clamp(min=_FP8_MIN_SUBNORMAL * 0.5))
+    biased_exp = (torch.floor(log2_abs) + _FP8_BIAS).clamp(0, 15).long()
+
+    # Normal: man = round((abs_s / 2^(biased_exp - bias) - 1) * 8)
+    # Subnormal (biased_exp=0): man = round(abs_s / 2^(1-bias) * 8)
+    is_subnorm = biased_exp < 1
+
+    exp_unbiased = (biased_exp - _FP8_BIAS).float()
+    significand = abs_s / torch.exp2(exp_unbiased) - 1.0
+    man = torch.round(significand * 8.0).long()
+
+    # Handle mantissa overflow: man=8 means bump exponent, man=0
+    overflow = man >= 8
+    man = torch.where(overflow, torch.zeros_like(man), man)
+    biased_exp = torch.where(overflow, biased_exp + 1, biased_exp)
+
+    # Subnormal path
+    man_sub = torch.round(abs_s * (2.0 ** (_FP8_BIAS + 3 - 1))).clamp(0, 7).long()
+    man = torch.where(is_subnorm, man_sub, man)
+    biased_exp = torch.where(is_subnorm, torch.zeros_like(biased_exp), biased_exp)
+
+    # Clamp to valid range: max code = 126 (exp=15, man=6 = 448), code 127 is NaN
+    code = (biased_exp << 3) | man.clamp(0, 7)
+    code = code.clamp(0, 126)
+
+    # Zero out tiny inputs
+    code = torch.where(abs_s < _FP8_MIN_SUBNORMAL * 0.5,
+                       torch.zeros_like(code), code)
+
+    # --- Decode via LUT ---
+    mags_unscaled = fp8_lut[code.long()]
     mags = mags_unscaled * safe_scales.unsqueeze(-1)
-    
+
     result = signs * mags
     result = result.reshape(rows, -1)[:, :cols].reshape(orig_shape)
     return result
@@ -356,7 +370,7 @@ def load_data(tokenizer):
     from datasets import load_dataset
     
     print("Loading wikitext-2-raw-v1...")
-    ds = load_dataset("wikitext", "wikitext-2-raw-v1", trust_remote_code=True)
+    ds = load_dataset("wikitext", "wikitext-2-raw-v1")
     
     def tokenize_split(split_name):
         texts = ds[split_name]["text"]

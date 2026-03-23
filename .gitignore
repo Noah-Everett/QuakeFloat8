@@ -31,3 +31,8 @@ src/shakespeare.txt
 notes/
 docs/
 reports/
+
+# Slurm logs and cluster venv
+slurm/logs/*.out
+slurm/logs/*.err
+.venv-slurm/
