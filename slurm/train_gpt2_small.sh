@@ -2,7 +2,7 @@
 #SBATCH --job-name=qf8-gpt2
 #SBATCH --output=slurm/logs/%j.out
 #SBATCH --error=slurm/logs/%j.err
-#SBATCH --partition=gpu
+#SBATCH --partition=gpu_test
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=32G
