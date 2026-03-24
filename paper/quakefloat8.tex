@@ -415,6 +415,10 @@ For any $\eta > 0$, the uniform density on $[x^* - \eta, x^* + \eta]$ achieves:
 \[
   \MSRE \geq \frac{\phi(x^*)^2}{12} - g(\eta), \qquad g(\eta) \to 0 \text{ as } \eta \to 0
 \]
+(Here $g(\eta) \to 0$ because $\phi$ is piecewise constant on finitely many cells,
+so for $\eta$ smaller than the cell containing $x^*$, the density is supported
+within a single cell where $\phi \equiv \phi^*$, and the high-resolution MSRE
+over that cell is exactly $\phi^{*2}/12$.)
 Therefore $\max_f \MSRE(Q, f) \geq (\phi^*)^2/12 > \varepsilon^2/12 = \MSRE^*$.
 
 \textbf{Step 3 (Uniqueness).}
