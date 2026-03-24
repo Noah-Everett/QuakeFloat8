@@ -248,7 +248,7 @@ def main():
         print()
 
     # Save results
-    results_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "results")
+    results_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "results", "benchmarks")
     os.makedirs(results_dir, exist_ok=True)
     out_path = os.path.join(results_dir, "w8a8_results.json")
     with open(out_path, "w") as f:

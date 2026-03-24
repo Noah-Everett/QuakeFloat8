@@ -243,7 +243,7 @@ def main():
 
     # Save results
     import os
-    results_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "results")
+    results_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "results", "benchmarks")
     os.makedirs(results_dir, exist_ok=True)
     out_path = os.path.join(results_dir, "ptq_results.json")
     with open(out_path, "w") as f:
