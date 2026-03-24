@@ -4,8 +4,8 @@
 #SBATCH --partition=gpu_test
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=32G
-#SBATCH --time=04:00:00
+#SBATCH --mem=64G
+#SBATCH --time=12:00:00
 #SBATCH --output=slurm_logs/gpt2_%j.out
 #SBATCH --error=slurm_logs/gpt2_%j.err
 #SBATCH --mail-user=neverett@g.harvard.edu
@@ -15,7 +15,7 @@
 # QF8 Training Experiment — GPT-2 Small
 # =============================================================================
 # Trains GPT-2 Small (162M) from scratch with FP32 / FP8-E4M3 / QF8
-# quantization-aware training (STE), 2000 steps each.
+# quantization-aware training (STE), 20K steps on OpenWebText.
 #
 # Usage:
 #   sbatch slurm/train_gpt2_small.sh
@@ -46,7 +46,7 @@ echo "HF cache: $HF_HOME"
 cd "$SLURM_SUBMIT_DIR"
 mkdir -p slurm_logs notes
 
-PYTHONUNBUFFERED=1 python src/train_gpt2_small.py
+PYTHONUNBUFFERED=1 python src/train_gpt2_small.py --dataset openwebtext --steps 20000
 
 EXIT_CODE=$?
 

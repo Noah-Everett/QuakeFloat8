@@ -2,14 +2,19 @@
 """
 train_gpt2_small.py — GPT-2 Small training with FP32 / FP8-E4M3 / QF8 comparison.
 
-Scales the QF8 experiment to GPT-2 Small (768d, 12 heads, 12 layers) on MPS.
+Scales the QF8 experiment to GPT-2 Small (768d, 12 heads, 12 layers).
 Quantization round-trips are reimplemented in pure PyTorch for MPS compatibility
 (no NumPy detours).
 
 Usage:
-    conda run -n qf8 python src/train_gpt2_small.py
+    # Local quick test (WikiText-2, 2K steps)
+    python src/train_gpt2_small.py --dataset wikitext2 --steps 2000
+
+    # Full run (OpenWebText, 20K steps — needs ~40GB RAM)
+    python src/train_gpt2_small.py --dataset openwebtext --steps 20000
 """
 
+import argparse
 import os
 import sys
 import math
@@ -22,6 +27,21 @@ import torch.nn.functional as F
 import tiktoken
 
 # ======================================================================
+# CLI
+# ======================================================================
+
+def parse_args():
+    p = argparse.ArgumentParser(description="GPT-2 Small QAT: FP32 vs FP8 vs QF8")
+    p.add_argument("--dataset", choices=["wikitext2", "openwebtext"], default="openwebtext",
+                   help="Training dataset (default: openwebtext)")
+    p.add_argument("--steps", type=int, default=20000, help="Total training steps (default: 20000)")
+    p.add_argument("--seed", type=int, default=42, help="Random seed (default: 42)")
+    p.add_argument("--batch", type=int, default=4, help="Micro-batch size (default: 4)")
+    p.add_argument("--grad-accum", type=int, default=4, help="Gradient accumulation steps (default: 4)")
+    p.add_argument("--seq-len", type=int, default=256, help="Sequence length (default: 256)")
+    return p.parse_args()
+
+# ======================================================================
 # Configuration
 # ======================================================================
 
@@ -31,15 +51,10 @@ N_HEADS   = 12
 N_LAYERS  = 12
 D_FF      = 3072
 
-# Training config
-SEQ_LEN   = 256
-BATCH     = 4           # micro-batch size per forward pass
-GRAD_ACCUM = 4          # effective batch = BATCH * GRAD_ACCUM = 16
+# Training config (defaults, overridden by CLI)
+SEQ_LEN   = 256        # also used for positional embedding size
 LR        = 3e-4
-WARMUP_STEPS = 200
-TOTAL_STEPS  = 2000     # Can increase if time permits
 LOG_EVERY    = 50
-VAL_EVERY    = 200
 VAL_BATCHES  = 10
 
 # Quantization
@@ -58,8 +73,6 @@ elif torch.cuda.is_available():
     DEVICE = "cuda"
 else:
     DEVICE = "cpu"
-
-print(f"Using device: {DEVICE}")
 
 
 # ======================================================================
@@ -365,34 +378,61 @@ class GPT2(nn.Module):
 # 6. Data Loading
 # ======================================================================
 
-def load_data(tokenizer):
-    """Load wikitext-2 from HuggingFace datasets, tokenize, return train/val tensors."""
+def load_data(tokenizer, dataset_name):
+    """Load dataset, tokenize, return train/val tensors."""
     from datasets import load_dataset
-    
-    print("Loading wikitext-2-raw-v1...")
-    ds = load_dataset("wikitext", "wikitext-2-raw-v1")
-    
-    def tokenize_split(split_name):
-        texts = ds[split_name]["text"]
-        # Join all text, filter empty lines
-        all_text = "\n".join(t for t in texts if t.strip())
-        tokens = tokenizer.encode(all_text)
-        return torch.tensor(tokens, dtype=torch.long)
-    
-    train_tokens = tokenize_split("train")
-    val_tokens = tokenize_split("validation")
-    
+
+    if dataset_name == "wikitext2":
+        print("Loading wikitext-2-raw-v1...")
+        ds = load_dataset("wikitext", "wikitext-2-raw-v1")
+
+        def tokenize_split(split_name):
+            texts = ds[split_name]["text"]
+            all_text = "\n".join(t for t in texts if t.strip())
+            tokens = tokenizer.encode(all_text)
+            return torch.tensor(tokens, dtype=torch.long)
+
+        train_tokens = tokenize_split("train")
+        val_tokens = tokenize_split("validation")
+
+    elif dataset_name == "openwebtext":
+        print("Loading OpenWebText (this may take a while on first run)...")
+        ds = load_dataset("openwebtext", split="train")
+        n_total = len(ds)
+        n_val = min(5000, n_total // 100)  # ~1% for val, capped at 5K docs
+        n_train = n_total - n_val
+
+        print(f"  Total docs: {n_total:,} | Train: {n_train:,} | Val: {n_val:,}")
+
+        def tokenize_docs(docs):
+            chunks = []
+            for doc in docs:
+                text = doc["text"]
+                if text.strip():
+                    chunks.append(tokenizer.encode(text))
+            # Flatten into one long tensor
+            flat = [tok for chunk in chunks for tok in chunk]
+            return torch.tensor(flat, dtype=torch.long)
+
+        print("  Tokenizing train split...")
+        train_tokens = tokenize_docs(ds.select(range(n_train)))
+        print("  Tokenizing val split...")
+        val_tokens = tokenize_docs(ds.select(range(n_train, n_total)))
+
+    else:
+        raise ValueError(f"Unknown dataset: {dataset_name}")
+
     print(f"Train tokens: {len(train_tokens):,}")
     print(f"Val tokens:   {len(val_tokens):,}")
-    
+
     return train_tokens, val_tokens
 
 
-def get_batch(data, device):
+def get_batch(data, device, seq_len, batch_size):
     """Sample a random batch of (input, target) sequences."""
-    ix = torch.randint(0, len(data) - SEQ_LEN - 1, (BATCH,))
-    x = torch.stack([data[i : i + SEQ_LEN] for i in ix]).to(device)
-    y = torch.stack([data[i + 1 : i + SEQ_LEN + 1] for i in ix]).to(device)
+    ix = torch.randint(0, len(data) - seq_len - 1, (batch_size,))
+    x = torch.stack([data[i : i + seq_len] for i in ix]).to(device)
+    y = torch.stack([data[i + 1 : i + seq_len + 1] for i in ix]).to(device)
     return x, y
 
 
@@ -401,12 +441,12 @@ def get_batch(data, device):
 # ======================================================================
 
 @torch.no_grad()
-def evaluate(model, val_data, device, vocab_size):
+def evaluate(model, val_data, device, vocab_size, seq_len, batch_size):
     """Compute validation loss over VAL_BATCHES random batches."""
     model.eval()
     losses = []
     for _ in range(VAL_BATCHES):
-        x, y = get_batch(val_data, device)
+        x, y = get_batch(val_data, device, seq_len, batch_size)
         logits = model(x)
         loss = F.cross_entropy(logits.view(-1, vocab_size), y.view(-1))
         losses.append(loss.item())
@@ -418,57 +458,65 @@ def evaluate(model, val_data, device, vocab_size):
 # 8. Training Loop
 # ======================================================================
 
-def train_model(name, quant_fn, train_data, val_data, vocab_size, device):
+def train_model(name, quant_fn, train_data, val_data, vocab_size, device, args):
     """Train a GPT-2 model and return metrics dict."""
+    total_steps = args.steps
+    batch_size = args.batch
+    grad_accum = args.grad_accum
+    seq_len = args.seq_len
+    warmup_steps = min(200, total_steps // 10)
+    val_every = max(200, total_steps // 50)  # ~50 val checkpoints
+
     print(f"\n{'=' * 70}")
     print(f"  Training: {name}")
     print(f"{'=' * 70}")
 
-    torch.manual_seed(42)
+    torch.manual_seed(args.seed)
     if device == "mps":
-        torch.mps.manual_seed(42)
+        torch.mps.manual_seed(args.seed)
+    elif device == "cuda":
+        torch.cuda.manual_seed(args.seed)
 
     model = GPT2(vocab_size, qfn=quant_fn).to(device)
     n_params = sum(p.numel() for p in model.parameters())
     print(f"  Parameters: {n_params:,}")
-    print(f"  Effective batch size: {BATCH * GRAD_ACCUM}")
-    print(f"  Seq length: {SEQ_LEN}")
+    print(f"  Effective batch size: {batch_size * grad_accum}")
+    print(f"  Seq length: {seq_len}")
 
     opt = torch.optim.AdamW(model.parameters(), lr=LR, weight_decay=0.1, betas=(0.9, 0.95))
-    
+
     # Linear warmup + cosine decay
     def lr_schedule(step):
-        if step < WARMUP_STEPS:
-            return step / WARMUP_STEPS
-        decay_steps = TOTAL_STEPS - WARMUP_STEPS
-        progress = (step - WARMUP_STEPS) / decay_steps
+        if step < warmup_steps:
+            return step / warmup_steps
+        decay_steps = total_steps - warmup_steps
+        progress = (step - warmup_steps) / decay_steps
         return 0.5 * (1.0 + math.cos(math.pi * progress))
-    
+
     sched = torch.optim.lr_scheduler.LambdaLR(opt, lr_schedule)
 
     train_losses = []
     val_snapshots = []
     step_times = []
-    
+
     model.train()
-    accum_loss = 0.0
-    
+
     t_total_start = time.time()
 
-    for step in range(1, TOTAL_STEPS + 1):
+    for step in range(1, total_steps + 1):
         t0 = time.time()
-        
+
         # Gradient accumulation
         opt.zero_grad()
         micro_losses = []
-        for _ in range(GRAD_ACCUM):
-            x, y = get_batch(train_data, device)
+        for _ in range(grad_accum):
+            x, y = get_batch(train_data, device, seq_len, batch_size)
             logits = model(x)
             loss = F.cross_entropy(logits.view(-1, vocab_size), y.view(-1))
-            loss_scaled = loss / GRAD_ACCUM
+            loss_scaled = loss / grad_accum
             loss_scaled.backward()
             micro_losses.append(loss.item())
-        
+
         nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         opt.step()
         sched.step()
@@ -482,25 +530,25 @@ def train_model(name, quant_fn, train_data, val_data, vocab_size, device):
             lr_now = opt.param_groups[0]['lr']
             ms = dt * 1000
             avg_recent = sum(train_losses[-LOG_EVERY:]) / len(train_losses[-LOG_EVERY:])
-            print(f"  step {step:5d}/{TOTAL_STEPS} | train {avg_recent:.4f} | "
+            print(f"  step {step:5d}/{total_steps} | train {avg_recent:.4f} | "
                   f"lr {lr_now:.2e} | {ms:.0f} ms/step")
 
-        if step % VAL_EVERY == 0 or step == 1:
-            vloss = evaluate(model, val_data, device, vocab_size)
+        if step % val_every == 0 or step == 1:
+            vloss = evaluate(model, val_data, device, vocab_size, seq_len, batch_size)
             val_snapshots.append((step, vloss))
             elapsed = time.time() - t_total_start
             print(f"  >>> val {vloss:.4f} | elapsed {elapsed:.0f}s")
 
     # Final validation
-    if not val_snapshots or val_snapshots[-1][0] != TOTAL_STEPS:
-        vloss = evaluate(model, val_data, device, vocab_size)
-        val_snapshots.append((TOTAL_STEPS, vloss))
-    
+    if not val_snapshots or val_snapshots[-1][0] != total_steps:
+        vloss = evaluate(model, val_data, device, vocab_size, seq_len, batch_size)
+        val_snapshots.append((total_steps, vloss))
+
     final_train = float(np.mean(train_losses[-100:]))
     final_val = val_snapshots[-1][1]
     avg_ms = float(np.mean(step_times)) * 1000
     total_time = time.time() - t_total_start
-    
+
     print(f"  -- Final: train={final_train:.4f}  val={final_val:.4f}  "
           f"avg={avg_ms:.0f} ms/step  total={total_time:.0f}s")
 
@@ -521,7 +569,7 @@ def train_model(name, quant_fn, train_data, val_data, vocab_size, device):
 # 9. Save Results
 # ======================================================================
 
-def save_results(results, path):
+def save_results(results, path, args):
     """Write comparison report as Markdown."""
     os.makedirs(os.path.dirname(path), exist_ok=True)
     fp32 = results[0]
@@ -534,14 +582,15 @@ def save_results(results, path):
     lines.append(f"- Model: GPT-2 Small (d_model={D_MODEL}, heads={N_HEADS}, "
                  f"layers={N_LAYERS}, d_ff={D_FF})")
     lines.append(f"- Tokenizer: GPT-2 BPE (tiktoken)")
-    lines.append(f"- Dataset: wikitext-2-raw-v1")
-    lines.append(f"- Seq length: {SEQ_LEN}, Micro-batch: {BATCH}, "
-                 f"Grad accum: {GRAD_ACCUM}, Effective batch: {BATCH * GRAD_ACCUM}")
-    lines.append(f"- Training: {TOTAL_STEPS} steps, lr={LR}, warmup={WARMUP_STEPS}, "
-                 f"cosine decay")
+    lines.append(f"- Dataset: {args.dataset}")
+    lines.append(f"- Seq length: {args.seq_len}, Micro-batch: {args.batch}, "
+                 f"Grad accum: {args.grad_accum}, Effective batch: {args.batch * args.grad_accum}")
+    lines.append(f"- Training: {args.steps} steps, lr={LR}, "
+                 f"warmup={min(200, args.steps // 10)}, cosine decay")
     lines.append(f"- Quantization: block-scaled round-trip + STE, "
-                 f"block_size={BLOCK_SIZE}, pure PyTorch (MPS-compatible)")
+                 f"block_size={BLOCK_SIZE}, pure PyTorch")
     lines.append(f"- Device: {DEVICE}")
+    lines.append(f"- Seed: {args.seed}")
     lines.append(f"- Parameters: {fp32['n_params']:,}\n")
 
     # Summary table
@@ -587,7 +636,7 @@ def save_results(results, path):
     lines.append("\n## Training Loss (sampled every 50 steps)\n")
     lines.append(hdr)
     lines.append(sep)
-    for s in range(0, TOTAL_STEPS, LOG_EVERY):
+    for s in range(0, args.steps, LOG_EVERY):
         if s < min(len(r["train_losses"]) for r in results):
             row = f"| {s + 1:5d} "
             for r in results:
@@ -648,9 +697,16 @@ def sanity_check():
 # ======================================================================
 
 def main():
+    args = parse_args()
+
+    # Update global so GPT2 positional embeddings match
+    global SEQ_LEN
+    SEQ_LEN = args.seq_len
+
     t_start = time.time()
     print("=" * 70)
-    print("  QF8 Training Experiment — GPT-2 Small on MPS")
+    print(f"  QF8 Training Experiment — GPT-2 Small")
+    print(f"  Dataset: {args.dataset} | Steps: {args.steps} | Seed: {args.seed}")
     print("=" * 70)
     print(f"PyTorch {torch.__version__} | Device: {DEVICE}\n")
 
@@ -663,7 +719,7 @@ def main():
     print(f"Vocab size: {vocab_size}\n")
 
     # Data
-    train_data, val_data = load_data(tokenizer)
+    train_data, val_data = load_data(tokenizer, args.dataset)
 
     # Train all three variants
     configs = [
@@ -675,15 +731,16 @@ def main():
     results = []
     for name, qfn in configs:
         try:
-            r = train_model(name, qfn, train_data, val_data, vocab_size, DEVICE)
+            r = train_model(name, qfn, train_data, val_data, vocab_size, DEVICE, args)
             results.append(r)
         except RuntimeError as e:
             if "out of memory" in str(e).lower() or "MPS" in str(e):
-                print(f"\n  ⚠ OOM or MPS error for {name}: {e}")
+                print(f"\n  OOM or device error for {name}: {e}")
                 print(f"  Skipping {name}...")
-                # Try to free memory
                 if DEVICE == "mps":
                     torch.mps.empty_cache()
+                elif DEVICE == "cuda":
+                    torch.cuda.empty_cache()
             else:
                 raise
 
@@ -695,7 +752,7 @@ def main():
     results_dir = os.path.join(
         os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "results", "training"
     )
-    save_results(results, os.path.join(results_dir, "gpt2_small_qat.md"))
+    save_results(results, os.path.join(results_dir, "gpt2_small_qat.md"), args)
 
     # Final summary
     elapsed = time.time() - t_start
@@ -707,13 +764,13 @@ def main():
     for r in results:
         print(f"  {r['name']:<12} {r['final_train']:8.4f} "
               f"{r['final_val']:8.4f} {r['avg_ms']:10.0f} {r['total_time']:7.0f}s")
-    
+
     fp32_val = results[0]['final_val']
     for r in results[1:]:
         delta = r['final_val'] - fp32_val
         pct = (delta / fp32_val * 100) if fp32_val else 0
         print(f"  {r['name']:<12} penalty: {delta:+.4f} ({pct:+.1f}%)")
-    
+
     print(f"\n  Total experiment time: {elapsed:.0f}s ({elapsed/60:.1f} min)")
 
 
