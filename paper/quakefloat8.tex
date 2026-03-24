@@ -88,6 +88,8 @@ or weight distribution (kurtosis correlation $r = -0.08$).
 on WikiText-2 perplexity, vs.\ $+0.19$--$0.28\%$ for MXFP8 E4M3 at 7B scale.
 W8A8 quantization reveals a known limitation: QF8's log-uniform spacing underperforms MXFP8
 on activations that concentrate near zero.
+Quantization-aware training of GPT-2 Small (162M parameters) shows QF8 matching FP32
+validation loss within noise ($+0.00\%$).
 (4)~The full QF8 MAC unit is estimated at ${\sim}650$ gates vs.\ ${\sim}1350$ for FP8
 (${\sim}2\times$ cheaper), with the multiply path itself $3.5\times$ cheaper (66 vs.\ 231 gates).
 All gate counts are NAND2-equivalent estimates; no RTL synthesis has been performed.
@@ -1141,14 +1143,41 @@ is not statistically robust.
 (e.g., SmoothQuant-style channel balancing) would likely be needed,
 partially offsetting the calibration-free benefit.
 
-\subsection{Quantization-Aware Training (Preliminary)}
+\subsection{Quantization-Aware Training}
 \label{subsec:qat}
 
-As a preliminary check, we trained a TinyGPT-2 model (124K parameters, 500 steps)
-with STE-based QAT. Both QF8 and FP8 E4M3 matched FP32 validation loss within
-noise (${\leq}0.1\%$). This confirms that STE-based QF8 quantization does not
-catastrophically break training, but the experiment is too small to draw any
-further conclusions. Full-scale QAT remains future work (Section~\ref{sec:future}).
+We train GPT-2 Small (162M parameters) from scratch on WikiText-2 with STE-based
+quantization-aware training (W8A8: both weights and activations quantized via
+block-scaled round-trip at each forward pass, with straight-through gradient estimation).
+Training uses the GPT-2 BPE tokenizer (50{,}257 vocab), sequence length 256,
+effective batch size~16, learning rate $3 \times 10^{-4}$ with cosine decay,
+and 2{,}000 steps.
+
+\begin{table}[ht]
+\centering
+\caption{GPT-2 Small QAT on WikiText-2 (162M parameters, 2{,}000 steps, single seed).}
+\label{tab:qat}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Format & Final Val Loss & $\Delta$ vs FP32 & ms/step (A100) \\
+\midrule
+FP32 (baseline) & 5.7495 & ---       & 521 \\
+\textbf{QF8}    & \textbf{5.7496} & $\mathbf{+0.00\%}$ & 801 \\
+FP8 E4M3        & 5.7518 & $+0.04\%$ & 1{,}111 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+QF8's validation loss is indistinguishable from FP32 ($\Delta = +0.0001$),
+while FP8 shows a small but consistent gap ($\Delta = +0.0023$) visible
+across all validation checkpoints.
+The training curves for all three formats track nearly identically throughout
+(Table~\ref{tab:qat}).
+
+This is a single-seed experiment without error bars, so the $+0.04\%$ FP8 gap
+may be within noise. The result confirms that STE-based QF8 quantization
+introduces no measurable training degradation at 162M scale, but larger-scale
+QAT with multiple seeds remains future work (Section~\ref{sec:future}).
 
 \subsection{Synthetic Benchmarks}
 \label{subsec:synthetic}
@@ -1304,9 +1333,9 @@ Several gaps remain:
     near-zero-concentrated activations (Section~\ref{subsec:ptq}). Activation-aware calibration
     (e.g., SmoothQuant-style channel balancing) is the most promising mitigation, but would
     reintroduce per-layer calibration --- partially offsetting the format's calibration-free appeal.
-  \item \textbf{Full-scale QAT.} The TinyGPT-2 experiment (124K parameters, 500 steps) is a
-    smoke test only. Full-scale QAT with multiple seeds and error bars
-    is needed before any training claim can be made.
+  \item \textbf{QAT at scale.} The GPT-2 Small experiment (162M parameters, 2{,}000 steps)
+    shows zero degradation but is single-seed and not fully converged.
+    Multi-seed QAT at 1B+ scale is needed to establish training robustness.
   \item \textbf{Scaling beyond 7B.} Weight-only PTQ at 13B--70B would strengthen the
     scaling story. The equalization property predicts identical SQNR at any scale;
     confirming this for perplexity at 70B would be definitive.
