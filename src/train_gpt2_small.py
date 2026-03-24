@@ -398,9 +398,9 @@ def load_data(tokenizer, dataset_name):
     elif dataset_name == "openwebtext":
         print("Loading OpenWebText (this may take a while on first run)...")
 
-        # Check for cached tokenized tensors
-        cache_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-                                 ".cache")
+        # Check for cached tokenized tensors (in /tmp to avoid filling home dir)
+        import tempfile
+        cache_dir = os.path.join(tempfile.gettempdir(), "qf8_tokenized")
         train_cache = os.path.join(cache_dir, "owt_train.bin")
         val_cache = os.path.join(cache_dir, "owt_val.bin")
 
