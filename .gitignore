@@ -15,6 +15,10 @@ runs/
 .env
 src/shakespeare.txt
 
+# LaTeX diff files
+*-diff.tex
+*-diff.pdf
+
 # LaTeX build artifacts
 *.aux
 *.out
