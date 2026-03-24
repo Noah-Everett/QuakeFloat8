@@ -10,7 +10,7 @@ Usage:
     # Local quick test (WikiText-2, 2K steps)
     python src/train_gpt2_small.py --dataset wikitext2 --steps 2000
 
-    # Full run (OpenWebText, 20K steps — needs ~40GB RAM)
+    # Full run (OpenWebText, 20K steps — needs ~128GB RAM)
     python src/train_gpt2_small.py --dataset openwebtext --steps 20000
 """
 
@@ -397,27 +397,65 @@ def load_data(tokenizer, dataset_name):
 
     elif dataset_name == "openwebtext":
         print("Loading OpenWebText (this may take a while on first run)...")
-        ds = load_dataset("openwebtext", split="train")
-        n_total = len(ds)
-        n_val = min(5000, n_total // 100)  # ~1% for val, capped at 5K docs
-        n_train = n_total - n_val
 
-        print(f"  Total docs: {n_total:,} | Train: {n_train:,} | Val: {n_val:,}")
+        # Check for cached tokenized tensors
+        cache_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                                 ".cache")
+        train_cache = os.path.join(cache_dir, "owt_train.bin")
+        val_cache = os.path.join(cache_dir, "owt_val.bin")
 
-        def tokenize_docs(docs):
-            chunks = []
-            for doc in docs:
-                text = doc["text"]
-                if text.strip():
-                    chunks.append(tokenizer.encode(text))
-            # Flatten into one long tensor
-            flat = [tok for chunk in chunks for tok in chunk]
-            return torch.tensor(flat, dtype=torch.long)
+        if os.path.exists(train_cache) and os.path.exists(val_cache):
+            print("  Loading cached tokenized tensors...")
+            train_tokens = torch.from_numpy(
+                np.memmap(train_cache, dtype=np.uint16, mode="r")).long()
+            val_tokens = torch.from_numpy(
+                np.memmap(val_cache, dtype=np.uint16, mode="r")).long()
+        else:
+            ds = load_dataset("openwebtext", split="train")
+            n_total = len(ds)
+            n_val = min(5000, n_total // 100)  # ~1% for val, capped at 5K docs
+            n_train = n_total - n_val
 
-        print("  Tokenizing train split...")
-        train_tokens = tokenize_docs(ds.select(range(n_train)))
-        print("  Tokenizing val split...")
-        val_tokens = tokenize_docs(ds.select(range(n_train, n_total)))
+            print(f"  Total docs: {n_total:,} | Train: {n_train:,} | Val: {n_val:,}")
+
+            def tokenize_docs(docs, label=""):
+                # Use numpy arrays to avoid Python list memory blow-up
+                chunks = []
+                n = len(docs)
+                t0 = time.time()
+                for i, doc in enumerate(docs):
+                    text = doc["text"]
+                    if text.strip():
+                        chunks.append(np.array(tokenizer.encode(text), dtype=np.uint16))
+                    if (i + 1) % 100000 == 0 or (i + 1) == n:
+                        elapsed = time.time() - t0
+                        rate = (i + 1) / elapsed
+                        print(f"    {label} {i+1:,}/{n:,} docs "
+                              f"({rate:.0f} docs/s, {elapsed:.0f}s)")
+                return np.concatenate(chunks)
+
+            print("  Tokenizing train split...")
+            train_np = tokenize_docs(ds.select(range(n_train)), "train")
+            print("  Tokenizing val split...")
+            val_np = tokenize_docs(ds.select(range(n_train, n_total)), "val")
+
+            # Cache to disk for future runs
+            os.makedirs(cache_dir, exist_ok=True)
+            print(f"  Caching to {cache_dir}...")
+            fp = np.memmap(train_cache, dtype=np.uint16, mode="w+",
+                           shape=train_np.shape)
+            fp[:] = train_np
+            fp.flush()
+            fp = np.memmap(val_cache, dtype=np.uint16, mode="w+",
+                           shape=val_np.shape)
+            fp[:] = val_np
+            fp.flush()
+
+            # Convert uint16 -> int64 via torch (avoids numpy double-alloc)
+            train_tokens = torch.from_numpy(train_np).long()
+            del train_np
+            val_tokens = torch.from_numpy(val_np).long()
+            del val_np
 
     else:
         raise ValueError(f"Unknown dataset: {dataset_name}")

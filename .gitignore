@@ -36,6 +36,9 @@ notes/
 docs/
 reports/
 
+# Tokenized dataset cache
+.cache/
+
 # Slurm logs and cluster venv
 slurm_logs/
 .venv-slurm/
