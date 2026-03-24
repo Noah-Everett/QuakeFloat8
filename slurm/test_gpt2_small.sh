@@ -5,7 +5,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=128G
-#SBATCH --time=01:00:00
+#SBATCH --time=02:00:00
 #SBATCH --output=slurm_logs/gpt2_test_%j.out
 #SBATCH --error=slurm_logs/gpt2_test_%j.err
 #SBATCH --mail-user=neverett@g.harvard.edu
@@ -49,7 +49,7 @@ echo "HF cache: $HF_HOME"
 cd "$SLURM_SUBMIT_DIR"
 
 export PYTHONUNBUFFERED=1
-python src/train_gpt2_small.py --dataset openwebtext --steps 500 --max-docs 50000
+python src/train_gpt2_small.py --dataset openwebtext --steps 500
 EXIT_CODE=$?
 
 echo "==========================================="
