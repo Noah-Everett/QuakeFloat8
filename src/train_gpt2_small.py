@@ -55,7 +55,7 @@ D_FF      = 3072
 SEQ_LEN   = 256        # also used for positional embedding size
 LR        = 3e-4
 LOG_EVERY    = 50
-VAL_BATCHES  = 10
+VAL_BATCHES  = 50
 
 # Quantization
 BLOCK_SIZE = 32
@@ -390,7 +390,7 @@ def load_data(tokenizer, dataset_name):
             texts = ds[split_name]["text"]
             all_text = "\n".join(t for t in texts if t.strip())
             tokens = tokenizer.encode(all_text)
-            return torch.tensor(tokens, dtype=torch.long)
+            return torch.tensor(tokens, dtype=torch.int32)
 
         train_tokens = tokenize_split("train")
         val_tokens = tokenize_split("validation")
@@ -427,12 +427,12 @@ def load_data(tokenizer, dataset_name):
         val_np = tokenize_docs(ds.select(range(n_train, n_total)), "val")
         del ds
 
-        # Convert uint16 -> int64 via torch (avoids numpy double-alloc)
-        train_tokens = torch.from_numpy(train_np).long()
+        # Convert uint16 -> int32 (not int64) to save ~36GB RAM.
+        # get_batch() converts to long on the GPU where it's cheap.
+        train_tokens = torch.from_numpy(train_np).int()
         del train_np
-        val_tokens = torch.from_numpy(val_np).long()
+        val_tokens = torch.from_numpy(val_np).int()
         del val_np
-            del val_np
 
     else:
         raise ValueError(f"Unknown dataset: {dataset_name}")
@@ -446,8 +446,8 @@ def load_data(tokenizer, dataset_name):
 def get_batch(data, device, seq_len, batch_size):
     """Sample a random batch of (input, target) sequences."""
     ix = torch.randint(0, len(data) - seq_len - 1, (batch_size,))
-    x = torch.stack([data[i : i + seq_len] for i in ix]).to(device)
-    y = torch.stack([data[i + 1 : i + seq_len + 1] for i in ix]).to(device)
+    x = torch.stack([data[i : i + seq_len] for i in ix]).long().to(device)
+    y = torch.stack([data[i + 1 : i + seq_len + 1] for i in ix]).long().to(device)
     return x, y
 
 

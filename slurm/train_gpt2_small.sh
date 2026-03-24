@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=qf8-gpt2
 #SBATCH --account=schwartz_lab
-#SBATCH --partition=gpu_test
+#SBATCH --partition=gpu
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=128G
@@ -17,11 +17,12 @@
 # Trains GPT-2 Small (162M) from scratch with FP32 / FP8-E4M3 / QF8
 # quantization-aware training (STE), 20K steps on OpenWebText.
 #
+# Before submitting:
+#   mkdir -p slurm_logs
+#
 # Usage:
 #   sbatch slurm/train_gpt2_small.sh
 # =============================================================================
-
-set -euo pipefail
 
 echo "==========================================="
 echo "Job ID: $SLURM_JOB_ID"
@@ -32,7 +33,9 @@ echo "==========================================="
 
 # ── Environment ──
 module load python
+set +eu  # mamba activate can fail with strict mode
 mamba activate quake-float-8
+set -eu
 
 export HF_HOME="/n/holylabs/schwartz_lab/Lab/neverett/quake-float-8/huggingface_cache"
 mkdir -p "$HF_HOME"
@@ -44,10 +47,9 @@ echo "HF cache: $HF_HOME"
 
 # ── Run ──
 cd "$SLURM_SUBMIT_DIR"
-mkdir -p slurm_logs notes
 
-PYTHONUNBUFFERED=1 python src/train_gpt2_small.py --dataset openwebtext --steps 20000
-
+export PYTHONUNBUFFERED=1
+python src/train_gpt2_small.py --dataset openwebtext --steps 20000
 EXIT_CODE=$?
 
 echo "==========================================="
