@@ -39,6 +39,8 @@ def parse_args():
     p.add_argument("--batch", type=int, default=4, help="Micro-batch size (default: 4)")
     p.add_argument("--grad-accum", type=int, default=4, help="Gradient accumulation steps (default: 4)")
     p.add_argument("--seq-len", type=int, default=256, help="Sequence length (default: 256)")
+    p.add_argument("--max-docs", type=int, default=0,
+                   help="Limit dataset to first N docs (0 = use all, default: 0)")
     return p.parse_args()
 
 # ======================================================================
@@ -378,7 +380,7 @@ class GPT2(nn.Module):
 # 6. Data Loading
 # ======================================================================
 
-def load_data(tokenizer, dataset_name):
+def load_data(tokenizer, dataset_name, max_docs=0):
     """Load dataset, tokenize, return train/val tensors."""
     from datasets import load_dataset
 
@@ -399,7 +401,10 @@ def load_data(tokenizer, dataset_name):
         print("Loading OpenWebText (this may take a while on first run)...")
         ds = load_dataset("openwebtext", split="train")
         n_total = len(ds)
-        n_val = min(5000, n_total // 100)  # ~1% for val, capped at 5K docs
+        if max_docs > 0:
+            n_total = min(max_docs, n_total)
+            print(f"  Using first {n_total:,} docs (--max-docs)")
+        n_val = min(5000, max(500, n_total // 100))  # ~1% for val, capped at 5K
         n_train = n_total - n_val
 
         print(f"  Total docs: {n_total:,} | Train: {n_train:,} | Val: {n_val:,}")
@@ -695,7 +700,7 @@ def main():
     print(f"Vocab size: {vocab_size}\n")
 
     # Data
-    train_data, val_data = load_data(tokenizer, args.dataset)
+    train_data, val_data = load_data(tokenizer, args.dataset, args.max_docs)
 
     # Train all three variants
     configs = [

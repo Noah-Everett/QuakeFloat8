@@ -49,7 +49,7 @@ echo "HF cache: $HF_HOME"
 cd "$SLURM_SUBMIT_DIR"
 
 export PYTHONUNBUFFERED=1
-python src/train_gpt2_small.py --dataset openwebtext --steps 500
+python src/train_gpt2_small.py --dataset openwebtext --steps 500 --max-docs 50000
 EXIT_CODE=$?
 
 echo "==========================================="
