@@ -570,82 +570,43 @@ def train_model(name, quant_fn, train_data, val_data, vocab_size, device, args):
 # ======================================================================
 
 def save_results(results, path, args):
-    """Write comparison report as Markdown."""
+    """Write raw results as JSON."""
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    fp32 = results[0]
 
-    lines = []
-    lines.append("# QF8 Training Experiment — GPT-2 Small\n")
-    lines.append(f"**Date**: {time.strftime('%Y-%m-%d %H:%M %Z')}\n")
-
-    lines.append("## Configuration\n")
-    lines.append(f"- Model: GPT-2 Small (d_model={D_MODEL}, heads={N_HEADS}, "
-                 f"layers={N_LAYERS}, d_ff={D_FF})")
-    lines.append(f"- Tokenizer: GPT-2 BPE (tiktoken)")
-    lines.append(f"- Dataset: {args.dataset}")
-    lines.append(f"- Seq length: {args.seq_len}, Micro-batch: {args.batch}, "
-                 f"Grad accum: {args.grad_accum}, Effective batch: {args.batch * args.grad_accum}")
-    lines.append(f"- Training: {args.steps} steps, lr={LR}, "
-                 f"warmup={min(200, args.steps // 10)}, cosine decay")
-    lines.append(f"- Quantization: block-scaled round-trip + STE, "
-                 f"block_size={BLOCK_SIZE}, pure PyTorch")
-    lines.append(f"- Device: {DEVICE}")
-    lines.append(f"- Seed: {args.seed}")
-    lines.append(f"- Parameters: {fp32['n_params']:,}\n")
-
-    # Summary table
-    lines.append("## Summary\n")
-    lines.append("| Model | Final Train Loss | Final Val Loss | Avg ms/step | Total Time |")
-    lines.append("|-------|-----------------|---------------|-------------|------------|")
-    for r in results:
-        lines.append(f"| {r['name']} | {r['final_train']:.4f} | "
-                     f"{r['final_val']:.4f} | {r['avg_ms']:.0f} | "
-                     f"{r['total_time']:.0f}s |")
-
-    # Quantization penalty
-    lines.append("\n## Quantization Penalty (vs FP32)\n")
-    for r in results[1:]:
-        delta = r["final_val"] - fp32["final_val"]
-        pct = (delta / fp32["final_val"] * 100) if fp32["final_val"] else 0
-        lines.append(f"- **{r['name']}**: delta_val = {delta:+.4f} ({pct:+.1f}%)")
-
-    # Throughput comparison
-    lines.append("\n## Throughput\n")
-    lines.append("| Model | ms/step | Slowdown vs FP32 |")
-    lines.append("|-------|---------|-----------------|")
-    for r in results:
-        slowdown = r['avg_ms'] / fp32['avg_ms'] if fp32['avg_ms'] else 0
-        lines.append(f"| {r['name']} | {r['avg_ms']:.0f} | {slowdown:.2f}x |")
-
-    # Validation snapshots
-    lines.append("\n## Validation Loss Over Training\n")
-    hdr = "| Step | " + " | ".join(r["name"] for r in results) + " |"
-    sep = "|------|" + "|".join("--------" for _ in results) + "|"
-    lines.append(hdr)
-    lines.append(sep)
-    all_steps = sorted({s for r in results for s, _ in r["val_snapshots"]})
-    for step in all_steps:
-        row = f"| {step:5d} "
-        for r in results:
-            val = dict(r["val_snapshots"]).get(step)
-            row += f"| {val:.4f} " if val is not None else "|   --   "
-        row += "|"
-        lines.append(row)
-
-    # Training loss curve (sampled)
-    lines.append("\n## Training Loss (sampled every 50 steps)\n")
-    lines.append(hdr)
-    lines.append(sep)
-    for s in range(0, args.steps, LOG_EVERY):
-        if s < min(len(r["train_losses"]) for r in results):
-            row = f"| {s + 1:5d} "
-            for r in results:
-                row += f"| {r['train_losses'][s]:.4f} "
-            row += "|"
-            lines.append(row)
+    out = {
+        "config": {
+            "model": f"GPT-2 Small (d_model={D_MODEL}, heads={N_HEADS}, layers={N_LAYERS})",
+            "dataset": args.dataset,
+            "steps": args.steps,
+            "seq_len": args.seq_len,
+            "batch": args.batch,
+            "grad_accum": args.grad_accum,
+            "effective_batch": args.batch * args.grad_accum,
+            "lr": LR,
+            "warmup": min(200, args.steps // 10),
+            "block_size": BLOCK_SIZE,
+            "seed": args.seed,
+            "device": DEVICE,
+            "n_params": results[0]["n_params"],
+            "date": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
+        },
+        "runs": [
+            {
+                "name": r["name"],
+                "final_train": r["final_train"],
+                "final_val": r["final_val"],
+                "avg_ms_per_step": r["avg_ms"],
+                "total_time_s": r["total_time"],
+                "val_snapshots": r["val_snapshots"],
+                "train_losses": r["train_losses"],
+                "step_times": r["step_times"],
+            }
+            for r in results
+        ],
+    }
 
     with open(path, "w") as f:
-        f.write("\n".join(lines) + "\n")
+        json.dump(out, f, indent=2)
     print(f"\nResults saved to {path}")
 
 
@@ -752,7 +713,7 @@ def main():
     results_dir = os.path.join(
         os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "results", "training"
     )
-    save_results(results, os.path.join(results_dir, "gpt2_small_qat.md"), args)
+    save_results(results, os.path.join(results_dir, "gpt2_small_qat.json"), args)
 
     # Final summary
     elapsed = time.time() - t_start
