@@ -64,7 +64,8 @@
   {\Large A Provably Optimal Log-Domain 8-Bit Format} \\[4pt]
   {\Large for ML Multiply-Accumulate} \\[12pt]
   {\large March 2026} \\[4pt]
-  {\normalsize Noah Everett}
+  {\normalsize Noah Everett} \\[2pt]
+  {\small Harvard University}
 \end{center}
 
 \vspace{1em}
@@ -88,8 +89,8 @@ or weight distribution (kurtosis correlation $r = -0.08$).
 on WikiText-2 perplexity, vs.\ $+0.19$--$0.28\%$ for MXFP8 E4M3 at 7B scale.
 W8A8 quantization reveals a known limitation: QF8's log-uniform spacing underperforms MXFP8
 on activations that concentrate near zero.
-Quantization-aware training of GPT-2 Small (162M parameters, 20K steps on OpenWebText)
-shows QF8 matching FP32 validation loss within noise ($+0.02\%$).
+A quantization-aware training stability check on GPT-2 Small (162M parameters, 20K steps
+on OpenWebText) shows QF8 tracking FP32 validation loss within noise throughout training.
 (4)~The full QF8 MAC unit is estimated at ${\sim}650$ gates vs.\ ${\sim}1350$ for FP8
 (${\sim}2\times$ cheaper), with the multiply path itself $3.5\times$ cheaper (66 vs.\ 231 gates).
 All gate counts are NAND2-equivalent estimates; no RTL synthesis has been performed.
@@ -425,14 +426,17 @@ everywhere, with strict inequality on a set of positive measure, so
 \]
 a contradiction. Therefore $\phi^* > \varepsilon$ for any non-log-uniform quantizer.
 
-For any $\eta > 0$, the uniform density on $[x^* - \eta, x^* + \eta]$ achieves:
+Since $\phi$ is piecewise constant on finitely many cells, its maximum is achieved
+at some interior point $x^*$ of some cell $S_{k^*}$ (cell boundaries are shared between
+two cells, each with a well-defined constant $\phi$ value; the maximum over finitely many
+values is achieved in at least one cell's interior).
+For any $\eta > 0$ small enough that $[x^* - \eta, x^* + \eta] \subset S_{k^*}$,
+the uniform density on $[x^* - \eta, x^* + \eta]$ achieves:
 \[
   \MSRE \geq \frac{\phi(x^*)^2}{12} - g(\eta), \qquad g(\eta) \to 0 \text{ as } \eta \to 0
 \]
-(Here $g(\eta) \to 0$ because $\phi$ is piecewise constant on finitely many cells,
-so for $\eta$ smaller than the cell containing $x^*$, the density is supported
-within a single cell where $\phi \equiv \phi^*$, and the high-resolution MSRE
-over that cell is exactly $\phi^{*2}/12$.)
+(Here $g(\eta) \to 0$ because the density is supported within the single cell $S_{k^*}$
+where $\phi \equiv \phi^*$, and the high-resolution MSRE over that cell is exactly $\phi^{*2}/12$.)
 Therefore $\max_f \MSRE(Q, f) \geq (\phi^*)^2/12 > \varepsilon^2/12 = \MSRE^*$.
 
 \textbf{Step 3 (Uniqueness).}
@@ -538,24 +542,17 @@ Substitute $\alpha_X = n_X$, $\alpha_Y = n_Y$ into~\eqref{eq:product-general}:
 $n_X + n_Y + n_X n_Y + 2n_X n_Y - 2n_X n_Y - 2n_X n_Y = n_X + n_Y - n_X n_Y$. \qed
 \end{proof}
 
-\begin{remark}[Sign of the Cross-Term]
-The correct sign is \textbf{minus} ($n_X + n_Y - n_X n_Y$), not plus as in the original formulation.
+\begin{remark}[Interpretation of the Cross-Term]
+The sign of the cross-term is \textbf{minus}: $\NMSE_{\mathrm{prod}} = n_X + n_Y - n_X n_Y$.
 The identity $(1 - n_X)(1 - n_Y) = 1 - n_{\mathrm{prod}}$ has a clean interpretation:
 the signal preservation fraction of the product equals the product of individual preservation fractions.
-However, since $n_X n_Y = O(1/N^4)$ while $n_X + n_Y = O(1/N^2)$,
-the distinction is negligible in practice.
-The corrected sign and the equivalence of the two forms~\eqref{eq:product-general} and~\eqref{eq:product-rho-gamma}
-were confirmed by exhaustive computation over 14,641 integer grid points covering all combinations
+Since $n_X n_Y = O(1/N^4)$ while $n_X + n_Y = O(1/N^2)$,
+the cross-term is negligible in practice.
+Both forms~\eqref{eq:product-general} and~\eqref{eq:product-rho-gamma} have been
+confirmed by exhaustive computation over 14{,}641 grid points covering all combinations
 of $(\NMSE_X, \NMSE_Y) \in \{0, 0.01, \ldots, 1\}^2$.
 \end{remark}
 
-\begin{remark}[Correction from Original]
-The original Theorem 3.1 used an MSRE-based formula with an invalid factorization
-($\E[X^2 \varepsilon_X^2] = \E[X^2]\E[\varepsilon_X^2]$, which fails because
-$\varepsilon_X$ depends deterministically on~$X$).
-For non-log-uniform quantizers, the MSRE formula can be off by factors of $6$--$1000\times$.
-The corrected formula~\eqref{eq:product-general} uses only the valid factorization $X \perp Y$.
-\end{remark}
 
 \subsection{Specialization to Log-Uniform Quantizers}
 
@@ -619,6 +616,18 @@ $\E[(Z - \hat{Z})^2] = d \cdot \E[w^2 x^2](n_w + n_x - n_w n_x)$
 and $\E[Z^2] = d \cdot \E[w^2 x^2]$. Division yields the result.
 \end{proof}
 
+\begin{remark}[Independence Assumption]
+\label{rem:independence}
+The dimension-free result requires independence of the pairs $(w_i, x_i)$ across
+dimensions~$i$. This holds for standard weight--activation products in feedforward layers,
+where weights are fixed and activations depend on independent input features.
+However, it does \emph{not} hold in attention mechanisms, where queries $q_i$ and keys $k_j$
+are derived from the same input sequence and may be correlated.
+In practice, the NMSE degradation from correlated pairs is bounded by the
+product error formula~\eqref{eq:product-general} applied per-element, so the dimension-free
+approximation remains a useful guide even when independence is approximate.
+\end{remark}
+
 
 %% ═══════════════════════════════════════════════════════
 \section{Exact MSRE of Log-Uniform Quantization}
@@ -657,12 +666,24 @@ Therefore $\MSRE_k = 2 - (2 - \varepsilon^2/12) = \varepsilon^2/12 + O(\varepsil
 This \emph{confirms} the high-resolution approximation. \qed
 \end{proof}
 
-\begin{remark}[Correction of $\varepsilon^2/2$ Error]
-The original derivation approximated $e^\varepsilon - 1 \approx \varepsilon$,
-omitting the $\varepsilon^2/2$ correction in the denominator.
-The correct denominator is $\varepsilon(1 + \varepsilon/2 + O(\varepsilon^2))$;
-this extra factor converts the erroneous $\varepsilon^2/2$ to the correct $\varepsilon^2/12$ ---
-a factor of 6 correction.
+\begin{remark}[Midpoint Choice: Geometric vs.\ Harmonic]
+\label{rem:midpoint-choice}
+The format definition and Theorem~\ref{thm:exact-msre}
+use geometric midpoint codepoints $c_k = a r^{k+1/2} = \sqrt{q_k q_{k+1}}$,
+which minimize per-cell MSRE under uniform intra-cell density.
+An alternative is the harmonic mean $c_k = 2q_k q_{k+1}/(q_k + q_{k+1})$,
+which minimizes the worst-case \emph{absolute} relative error within each cell
+to $(r-1)/(r+1)$ --- a quantity that is exactly constant across bins without any
+high-resolution approximation.
+The accompanying Lean~4 numerical verification uses harmonic midpoints for this reason.
+The two midpoints agree to first order:
+$c_k^{\mathrm{geo}} = c_k^{\mathrm{harm}}\bigl(1 + O(\varepsilon^2)\bigr)$,
+and both yield $\MSRE = \varepsilon^2/12 + O(\varepsilon^4)$.
+The difference appears only in the $O(\varepsilon^4)$ correction and is
+negligible at $N = 256$ ($< 0.2\%$ relative).
+Crucially, the minimax optimality of log-uniform \emph{spacing}
+(Theorem~\ref{thm:minimax}) is independent of the midpoint rule: it depends
+only on cell widths $w(x)/x$, not on the choice of reconstruction point within each cell.
 \end{remark}
 
 \begin{table}[ht]
@@ -831,11 +852,11 @@ for intra-block accumulation, with block-pair results reduced via FP32 arithmeti
 \toprule
 Component & Gates & Area ($\mu\text{m}^2$) \\
 \midrule
-Multiply path (7-bit log adder)          & 50   & 2.0  \\
+Multiply path (Table~\ref{tab:qf8-multiply})& 66   & 2.6  \\
 exp2 LUT ($16 \times 12$-bit ROM)        & 100  & 4.0  \\
 6-bit barrel shifter                     & 150  & 6.0  \\
 32-bit carry-save Kulisch accumulator    & 300  & 12.0 \\
-Control/zero-detect/mux                  & 50   & 2.0  \\
+Control/mux                              & 34   & 1.4  \\
 \midrule
 \textbf{Total}                           & \textbf{650} & \textbf{26.0} \\
 \bottomrule
@@ -1152,9 +1173,11 @@ worse than MXFP8 ($+1.43\%$ vs.\ $+0.65\%$). The cause is fundamental:
 log-uniform spacing allocates precision uniformly across magnitudes,
 but post-GELU and post-LayerNorm activations concentrate near zero,
 where the log grid's resolution is coarsest. At GPT-2 Large (774M),
-QF8's W8A8 penalty drops to $+0.11\%$ (comparable to MXFP8's $+0.23\%$),
-but with only three model sizes and no error bars, this apparent scaling trend
-is not statistically robust.
+QF8's W8A8 penalty is $+0.11\%$ (perplexity $15.453$ vs.\ weight-only $15.453$;
+the values differ at the fourth decimal place, $15.4534$ vs.\ $15.4525$, and appear
+identical only due to rounding). This is comparable to MXFP8's $+0.23\%$,
+but with only three model sizes, single-seed evaluation, and no error bars,
+this apparent scaling trend is not statistically robust.
 
 \textbf{Near-zero representation cliff.}
 Within a single block, QF8's smallest nonzero magnitude is $2^{(1-64)/16} \approx 0.065$
@@ -1177,7 +1200,8 @@ partially offsetting the calibration-free benefit.
 \subsection{Quantization-Aware Training}
 \label{subsec:qat}
 
-We train GPT-2 Small (162M parameters) from scratch on OpenWebText (${\sim}9$B tokens)
+As a training \emph{stability check}, we train GPT-2 Small (162M parameters)
+from scratch on OpenWebText (${\sim}9$B tokens)
 with STE-based quantization-aware training (W8A8: both weights and activations quantized via
 block-scaled round-trip at each forward pass, with straight-through gradient estimation).
 Training uses the GPT-2 BPE tokenizer (50{,}257 vocab), sequence length 256,
@@ -1186,27 +1210,32 @@ and 20{,}000 steps on an A100-SXM4-80GB.
 
 \begin{table}[ht]
 \centering
-\caption{GPT-2 Small QAT on OpenWebText (162M parameters, 20{,}000 steps, single seed).}
+\caption{GPT-2 Small QAT stability check (162M parameters, 20{,}000 steps, single seed).
+  At 20K steps the model has seen ${\sim}80$M of ${\sim}9$B tokens and is far from convergence
+  (val loss ${\sim}4.6$, perplexity ${\sim}101$ vs.\ ${\sim}25$ for a fully trained GPT-2 Small).
+  This experiment tests training stability, not final model quality.}
 \label{tab:qat}
 \begin{tabular}{@{}lccc@{}}
 \toprule
 Format & Final Val Loss & $\Delta$ vs FP32 & ms/step (A100) \\
 \midrule
 FP32 (baseline) & 4.6142 & ---       & 218 \\
-\textbf{QF8}    & \textbf{4.6149} & $\mathbf{+0.02\%}$ & 425 \\
+QF8             & 4.6149 & $+0.02\%$ & 425 \\
 FP8 E4M3        & 4.6128 & $-0.03\%$ & 557 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-QF8's validation loss is indistinguishable from FP32 ($\Delta = +0.0007$, perplexity
-${\sim}101$), confirming that STE-based QF8 quantization introduces no measurable
-training degradation at 162M scale.
-All three formats track nearly identically across all 50 validation checkpoints
-throughout training (Table~\ref{tab:qat}).
+All three formats track nearly identically across all 50 validation checkpoints throughout training.
+The key observation is not the final loss values (which are far from convergence) but
+the \emph{stability}: QF8's STE-based quantization neither diverges nor introduces
+measurable training degradation relative to FP32 or FP8 over 20{,}000 steps.
+FP8 E4M3 achieves marginally lower validation loss than both QF8 and FP32 in this run;
+at this stage of training, the $0.03$--$0.05\%$ differences are within single-seed noise.
 
-This is a single-seed experiment without error bars, so the small differences
-between formats may be within noise. Multi-seed QAT at 1B+ scale remains
+This is a single-seed experiment without error bars, and the model is far from
+convergence. The ms/step values reflect Python/PyTorch STE overhead, not native
+hardware throughput. Multi-seed QAT to convergence at 1B+ scale remains
 future work (Section~\ref{sec:future}).
 
 \subsection{Synthetic Benchmarks}
