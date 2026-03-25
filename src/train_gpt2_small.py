@@ -41,6 +41,10 @@ def parse_args():
     p.add_argument("--seq-len", type=int, default=256, help="Sequence length (default: 256)")
     p.add_argument("--max-docs", type=int, default=0,
                    help="Limit dataset to first N docs (0 = use all, default: 0)")
+    p.add_argument("--format", choices=["all", "fp32", "fp8", "qf8"], default="all",
+                   help="Which format to train (default: all three sequentially)")
+    p.add_argument("--output", type=str, default="",
+                   help="Output JSON path (default: results/training/gpt2_small_qat.json)")
     return p.parse_args()
 
 # ======================================================================
@@ -702,12 +706,14 @@ def main():
     # Data
     train_data, val_data = load_data(tokenizer, args.dataset, args.max_docs)
 
-    # Train all three variants
-    configs = [
+    # Format configs
+    all_configs = [
         ("FP32",     None),
         ("FP8-E4M3", fp8_ste),
         ("QF8",      qf8_ste),
     ]
+    fmt_map = {"fp32": [all_configs[0]], "fp8": [all_configs[1]], "qf8": [all_configs[2]], "all": all_configs}
+    configs = fmt_map[args.format]
 
     results = []
     for name, qfn in configs:
@@ -730,10 +736,14 @@ def main():
         return
 
     # Save report
-    results_dir = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "results", "training"
-    )
-    save_results(results, os.path.join(results_dir, "gpt2_small_qat.json"), args)
+    if args.output:
+        out_path = args.output
+    else:
+        results_dir = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "results", "training"
+        )
+        out_path = os.path.join(results_dir, "gpt2_small_qat.json")
+    save_results(results, out_path, args)
 
     # Final summary
     elapsed = time.time() - t_start
