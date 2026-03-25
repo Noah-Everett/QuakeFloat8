@@ -704,11 +704,11 @@ $\varepsilon$ & Exact MSRE & $\varepsilon^2/12$ & $\varepsilon^2/2$ (wrong) & Ex
 
 
 %% ═══════════════════════════════════════════════════════
-\section{Separation Result: QF8 vs.\ FP8}
+\section{MSRE Separation and Format Comparison}
 \label{sec:separation}
 %% ═══════════════════════════════════════════════════════
 
-\subsection{Exponential MSRE Separation}
+\subsection{Log vs.\ Uniform: Exponential MSRE Separation}
 
 \begin{theorem}[Exponential Separation Under MSRE]
 \label{thm:separation}
@@ -754,7 +754,24 @@ MSE is insensitive because it is dominated by absolute error on large values
 where both quantizers are comparable.
 \end{proof}
 
-\subsection{QF8 vs.\ FP8 E4M3: Detailed Comparison}
+\begin{remark}[Scope of the Separation Theorem]
+\label{rem:separation-scope}
+Theorem~\ref{thm:separation} compares log-uniform quantization against \emph{truly uniform}
+(fixed-step) quantization --- the regime of INT8.
+FP8 E4M3 is \emph{not} a uniform quantizer: within each binade it has 8 uniformly-spaced
+levels, but across binades the step size doubles, making it quasi-logarithmic at coarse scale.
+Consequently, the exponential MSRE separation of Theorem~\ref{thm:separation} applies to
+the QF8-vs-INT8 comparison under MSRE, not to the QF8-vs-FP8 comparison.
+
+The $+6.6$~dB advantage of QF8 over FP8 E4M3 (Section~\ref{subsec:qf8-vs-fp8}) has a different,
+simpler origin: QF8 provides 16~levels per octave vs.\ FP8's~8, giving a step-size ratio
+of~$2$ and an MSRE ratio of~$4$ ($10\log_{10}(4) = 6.0$~dB). The remaining ${\sim}0.6$~dB
+arises from FP8's piecewise-uniform spacing within each binade, which incurs a small
+additional penalty relative to purely log-uniform spacing (Table~\ref{tab:qf8-vs-fp8-binade}).
+\end{remark}
+
+\subsection{QF8 vs.\ FP8 E4M3: Levels-per-Octave Advantage}
+\label{subsec:qf8-vs-fp8}
 
 \begin{table}[ht]
 \centering
@@ -962,7 +979,12 @@ This confirms Johnson's 2018 finding that 16-bit ELMA achieves 41\% power reduct
 All experiments use identical block-scaled quantization ($k = 32$ elements) with E8M0 shared
 exponents for all three formats (QF8, MXFP8 E4M3, INT8), ensuring a fair comparison at the
 same effective storage cost (8.25 bits/element). INT8 uses per-block symmetric scaling
-($\text{amax}/127$). Code and raw results are available at
+($\text{amax}/127$).
+All PTQ comparisons use simple quantize-dequantize round-trips without calibration data or
+learned scaling --- the goal is to compare \emph{format-level} accuracy at equal complexity,
+not to compete with calibration-based methods (GPTQ, AWQ, QuIP\#) that achieve
+near-lossless results even at 4~bits by optimizing the quantization grid per-layer.
+Code and raw results are available at
 \url{https://github.com/Noah-Everett/QuakeFloat8}.
 
 \subsection{SQNR on Pretrained Weights}
@@ -989,9 +1011,12 @@ QF8 $-$ MXFP8 & $+6.5$ dB & $+6.2$ dB & $+6.5$ dB \\
 \end{tabular}
 \end{table}
 
-The measured $+6.5$~dB advantage over MXFP8 matches the theoretical prediction of $+6.6$~dB
-(Section~\ref{sec:separation}) with remarkably low variance across all 48 layers
-(range: $6.2$--$6.5$~dB). INT8 achieves the highest absolute SQNR ($44.6$~dB) because it
+The measured $+6.5$~dB advantage over MXFP8 is consistent with the structural prediction
+of ${\sim}6.0$~dB from the levels-per-octave ratio ($16/8 = 2$, so
+$10\log_{10}(4) = 6.0$~dB; Section~\ref{subsec:qf8-vs-fp8}), with the additional
+${\sim}0.5$~dB attributable to FP8's within-binade non-uniformity
+(Table~\ref{tab:qf8-vs-fp8-binade}). The advantage shows remarkably low variance across
+all 48 layers (range: $6.2$--$6.5$~dB). INT8 achieves the highest absolute SQNR ($44.6$~dB) because it
 minimizes MSE rather than NMSE --- a distinction we revisit below.
 
 \subsection{Cross-Model Equalization Experiment}
@@ -1020,6 +1045,11 @@ INT8            & 45.1 dB          & 0.54 dB          & 8.9 dB & $-0.49$ \\
 Models tested: GPT-2 (Small, Medium, Large), OPT (125M, 350M, 1.3B),
 Pythia (160M, 410M, 1B), BERT (Base, Large), RoBERTa-Base, DistilBERT,
 T5 (Small, Base).
+All 15 models are transformer variants (decoder-only, encoder-only, or encoder-decoder);
+CNNs, RNNs, and diffusion models are not represented.
+The equalization property is mathematically distribution-independent, so it should hold
+for any architecture, but the empirical confirmation here is limited to transformer
+weight distributions.
 
 \begin{figure}[ht]
 \centering
@@ -1420,8 +1450,10 @@ for integer constants $a, b$, or compositions of a bounded number of such reinte
 with integer arithmetic.
 \end{conjecture}
 
-This remains unproven and should be either proved rigorously or clearly labeled as a conjecture
-in any paper.
+This is speculative: we have no proof, no counterexample, and no evidence beyond the
+observation that known BMD decoders (LUT, Quake trick, quadratic approximation) all fit
+this pattern. We include it as an open question that may interest the hardware/arithmetic
+community.
 
 
 
