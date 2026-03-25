@@ -14,21 +14,27 @@
 # =============================================================================
 # QF8 Convergence Training — GPT-2 Small (3 formats × 3 seeds)
 # =============================================================================
-# Requests 1 H200 node (4 GPUs). Runs 9 jobs (3 formats × 3 seeds) across
-# the 4 GPUs, 4 at a time, using GNU parallel.
+# Runs 9 jobs (3 formats × 3 seeds) across GPUs using GNU parallel.
 #
-# Each run: 200K steps, batch=32, grad_accum=8, seq=1024 → 262K tokens/step
-# Total: ~52B tokens per run ≈ 6 epochs of OpenWebText
-#
-# Estimated time: ~40h across 4 GPUs (well within 72h limit)
-#
-# Before submitting:
-#   mkdir -p slurm_logs
+# For testing, override SBATCH above and tweak these variables:
+#   partition=gpu_test, gres=gpu:4, time=00:30:00, mem=64G, cpus=4
+#   STEPS=50, BATCH=4, GRAD_ACCUM=1, SEQ_LEN=256, MAX_DOCS=5000
 #
 # Usage:
+#   mkdir -p slurm_logs
 #   sbatch slurm/train_convergence.sh
 # =============================================================================
 
+# ── Config (edit for testing) ──
+STEPS=200000
+BATCH=32
+GRAD_ACCUM=8
+SEQ_LEN=1024
+MAX_DOCS=0
+N_GPUS=4
+RESULTS_DIR="results/training/convergence"
+
+# ── Setup ──
 set -euo pipefail
 
 echo "==========================================="
@@ -36,9 +42,9 @@ echo "Job ID: $SLURM_JOB_ID"
 echo "Node: $(hostname)"
 echo "GPUs: $(nvidia-smi -L 2>/dev/null | wc -l)"
 echo "Start: $(date)"
+echo "Config: steps=${STEPS} batch=${BATCH} grad_accum=${GRAD_ACCUM} seq=${SEQ_LEN} max_docs=${MAX_DOCS}"
 echo "==========================================="
 
-# ── Environment ──
 module load python
 set +eu
 mamba activate quake-float-8
@@ -53,12 +59,6 @@ echo "CUDA: $(python -c 'import torch; print(torch.cuda.get_device_name() if tor
 
 cd "$SLURM_SUBMIT_DIR"
 export PYTHONUNBUFFERED=1
-
-STEPS=200000
-BATCH=32
-GRAD_ACCUM=8
-SEQ_LEN=1024
-RESULTS_DIR="results/training/convergence"
 mkdir -p "$RESULTS_DIR"
 
 # ── Run function ──
@@ -67,6 +67,8 @@ run_one() {
     local seed=$2
     local gpu=$3
     local outfile="${RESULTS_DIR}/${fmt}_seed${seed}.json"
+    local max_docs_flag=""
+    [ "$MAX_DOCS" -gt 0 ] && max_docs_flag="--max-docs $MAX_DOCS"
 
     echo "[$(date +%H:%M:%S)] Starting ${fmt} seed=${seed} on GPU ${gpu}"
     CUDA_VISIBLE_DEVICES=$gpu python src/train_gpt2_small.py \
@@ -78,6 +80,7 @@ run_one() {
         --seq-len $SEQ_LEN \
         --seed "$seed" \
         --output "$outfile" \
+        $max_docs_flag \
         > "${RESULTS_DIR}/${fmt}_seed${seed}.log" 2>&1
     local rc=$?
 
@@ -85,13 +88,10 @@ run_one() {
     return $rc
 }
 export -f run_one
-export STEPS BATCH GRAD_ACCUM SEQ_LEN RESULTS_DIR HF_HOME
+export STEPS BATCH GRAD_ACCUM SEQ_LEN MAX_DOCS RESULTS_DIR HF_HOME
 
-# ── Schedule 9 jobs across 4 GPUs ──
-# GNU parallel runs 4 at a time, one per GPU (--jobs 4).
-# The {%} slot number (1-4) maps to GPU 0-3.
-
-parallel --jobs 4 --colsep ' ' \
+# ── Schedule 9 jobs across N GPUs ──
+parallel --jobs "$N_GPUS" --colsep ' ' \
     'run_one {1} {2} $(( {%} - 1 ))' \
     ::: fp32 qf8 fp8 \
     ::: 42 123 7
