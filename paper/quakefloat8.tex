@@ -127,6 +127,20 @@ becomes integer addition --- replacing an $O(n^2)$-gate multiplier with an $O(n)
 The format is paired with MX-style block scaling (E8M0 shared exponent per 32 elements)
 to achieve full FP32 dynamic range.
 
+\subsection{Relationship to Prior Work}
+
+QF8 builds on two prior lines of work.
+First, Johnson's (2018) ELMA format~[1] demonstrated that log-domain multiply with
+Kulisch accumulation is viable for 8-bit deep learning arithmetic ---
+QF8's core multiply-as-addition mechanism is Johnson's.
+Second, the OCP Microscaling (MX) specification~[10] established
+E8M0 block scaling as a practical way to decouple dynamic range from per-element precision ---
+QF8 adopts this directly.
+What QF8 adds is (a)~a fixed-width \texttt{u3.4} encoding (vs.\ Johnson's variable-width posit regime),
+(b)~formal minimax optimality analysis (the equalization property, Theorem~\ref{thm:minimax}),
+and (c)~empirical validation at scale.
+A detailed comparison appears in Section~\ref{sec:literature}.
+
 \subsection{Contributions}
 
 \begin{enumerate}[leftmargin=2em]
@@ -1141,6 +1155,19 @@ where the log grid's resolution is coarsest. At GPT-2 Large (774M),
 QF8's W8A8 penalty drops to $+0.11\%$ (comparable to MXFP8's $+0.23\%$),
 but with only three model sizes and no error bars, this apparent scaling trend
 is not statistically robust.
+
+\textbf{Near-zero representation cliff.}
+Within a single block, QF8's smallest nonzero magnitude is $2^{(1-64)/16} \approx 0.065$
+(code $c=1$). There is no gradual underflow: values jump discontinuously from
+exact zero ($c=0$) to $0.065$. IEEE formats avoid this via denormals, but QF8's
+fixed-point log encoding has no subnormal region.
+In practice, E8M0 block scaling mitigates this: the block scale $s$ shifts the
+smallest nonzero value to $0.065 \cdot s$, which can be as small as
+${\sim}3.8 \times 10^{-40}$ ($s = 2^{-127}$). The cliff matters only
+\emph{within} a block where large and near-zero values coexist --- precisely
+the activation pattern produced by ReLU, where the block scale is set by the
+largest element and the near-zero activations fall into the gap.
+This is the same root cause as the W8A8 penalty above.
 
 \textbf{Implication:} QF8's theoretical ``no calibration'' advantage applies to
 \emph{weight} quantization. For W8A8 deployment, activation-aware techniques
