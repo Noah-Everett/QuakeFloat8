@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH --job-name=qf8-conv
 #SBATCH --account=schwartz_lab
-#SBATCH --partition=gpu_h200
+#SBATCH --partition=gpu_test
 #SBATCH --gres=gpu:4
-#SBATCH --cpus-per-task=32
-#SBATCH --mem=256G
-#SBATCH --time=3-00:00:00
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=64G
+#SBATCH --time=00:30:00
 #SBATCH --output=slurm_logs/convergence_%j.out
 #SBATCH --error=slurm_logs/convergence_%j.err
 #SBATCH --mail-user=neverett@g.harvard.edu
@@ -26,11 +26,11 @@
 # =============================================================================
 
 # ── Config (edit for testing) ──
-STEPS=200000
-BATCH=32
-GRAD_ACCUM=8
-SEQ_LEN=1024
-MAX_DOCS=0
+STEPS=50
+BATCH=4
+GRAD_ACCUM=1
+SEQ_LEN=256
+MAX_DOCS=5000
 N_GPUS=4
 RESULTS_DIR="results/training/convergence"
 
