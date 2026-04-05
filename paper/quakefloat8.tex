@@ -971,6 +971,17 @@ This confirms Johnson's 2018 finding that 16-bit ELMA achieves 41\% power reduct
     hardware cost and half the cost of FP8.}
 \end{itemize}
 
+\paragraph{System-level efficiency.}
+The per-MAC energy advantages above apply to the compute datapath only.
+Modern LLM inference is typically memory-bandwidth-bound, where data-movement
+energy dominates arithmetic cost by two orders of magnitude~[6].
+In this regime, QF8's primary efficiency contribution is indirect: at identical
+8-bit bandwidth, QF8 delivers $+6.6$~dB higher SQNR than FP8 E4M3, potentially
+enabling 8-bit deployment in settings that would otherwise require 16-bit
+precision---halving memory traffic and the associated energy cost.
+Validating this claim requires demonstrating QF8 at 8~bits matching FP16 quality
+on production-scale models, which we leave to future work.
+
 
 %% ═══════════════════════════════════════════════════════
 \section{Empirical Evaluation}
