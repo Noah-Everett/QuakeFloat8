@@ -2,7 +2,7 @@
 
 **A log-domain 8-bit number format that makes ML multiplication as cheap as addition.**
 
-[![Lean 4 Verified](https://img.shields.io/badge/Lean%204-formally%20verified-blue)](lean/)
+[![Lean 4 Verified](https://img.shields.io/badge/Lean%204-numerically%20verified-blue)](lean/)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10+-green)](src/)
 
 ## The Idea
@@ -14,7 +14,7 @@ The legendary [Quake III fast inverse square root](https://en.wikipedia.org/wiki
 - **Multiply = integer addition** (no multiplier circuit needed)
 - **2× more precision** than FP8 (16 levels per octave vs 8)
 - **7.3× smaller multipliers** than FP32
-- **Formally verified** optimality guarantees in Lean 4
+- **Numerically verified** optimality guarantees in Lean 4
 
 ## Why It Matters
 
@@ -30,18 +30,18 @@ Modern ML is bottlenecked by matrix multiplication. Multipliers are expensive �
 
 The +6.6 dB advantage means **4.5× less quantization noise** at the same bit width.
 
-## Formal Verification
+## Lean 4 Verification
 
-Key mathematical properties are proven in [Lean 4](https://lean-lang.org/), not just tested:
+Key mathematical properties are verified in [Lean 4](https://lean-lang.org/) via exhaustive numerical checks and formal theorem statements:
 
 | Property | Status |
 |----------|--------|
-| Log-uniform quantization is minimax optimal | ✅ Proven |
-| Product error decomposition | ✅ Proven |
-| Exact mean squared relative error bound | ✅ Proven |
-| Separation between log and uniform quantizers | ✅ Proven |
+| Log-uniform quantization is minimax optimal | ✅ Numerically verified |
+| Product error decomposition | ✅ Numerically verified |
+| Exact mean squared relative error bound | ✅ Numerically verified |
+| Separation between log and uniform quantizers | ✅ Numerically verified |
 
-See [`lean/RESULTS.md`](lean/RESULTS.md) for proof details.
+Two algebraic identities have formal `theorem` statements with `sorry` stubs awaiting Mathlib's `ring` tactic; all others are verified via exhaustive integer grids (up to 14,641 cases). See [`lean/RESULTS.md`](lean/RESULTS.md) for details.
 
 ## Quick Start
 

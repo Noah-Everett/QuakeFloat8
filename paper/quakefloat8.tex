@@ -1094,8 +1094,8 @@ QF8's correlation is $r = -0.08$ --- effectively zero. This confirms the
 equalization property: QF8's quantization error is distribution-independent.
 
 \textbf{Practical consequence:} QF8 weight quantization requires no per-layer calibration.
-The SQNR is guaranteed to be ${\sim}38$~dB regardless of the model architecture,
-training procedure, or weight distribution shape.
+Across all 1{,}481 tested tensors, the SQNR is consistently ${\sim}38$~dB regardless of
+model architecture, training procedure, or weight distribution shape.
 
 \subsection{Post-Training Quantization on WikiText-2}
 \label{subsec:ptq}

@@ -1,12 +1,12 @@
-# QuakeFloat8 — Lean 4 Formal Verification
+# QuakeFloat8 — Lean 4 Numerical Verification
 
 ## Overview
 
-Key mathematical properties of QF8 are formally verified in Lean 4, providing machine-checked proofs of correctness.
+Key mathematical properties of QF8 are verified in Lean 4 via exhaustive numerical checks and formal theorem statements.
 
 ## Environment
 - **Lean 4**: v4.27.0
-- **Note**: Core Lean 4 only (no Mathlib). Algebraic identities verified via exhaustive numerical grids + formal theorem statements.
+- **Note**: Core Lean 4 only (no Mathlib). Algebraic identities verified via exhaustive numerical grids (up to 14,641 cases per identity). Two `theorem` declarations carry `sorry` stubs pending Mathlib's `ring` tactic; all properties are verified by `#eval`.
 
 ---
 
