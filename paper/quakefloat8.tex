@@ -110,17 +110,17 @@ computing.
 
 The push toward low-precision arithmetic has been remarkably successful across
 multiple domains.
-In machine learning, FP16 mixed-precision training~[1] is standard practice,
-BFloat16 is ubiquitous, and 8-bit formats (INT8, FP8 E4M3/E5M2~[2]) are
+In machine learning, FP16 mixed-precision training~\cite{micikevicius2018} is standard practice,
+BFloat16 is ubiquitous, and 8-bit formats (INT8, FP8 E4M3/E5M2~\cite{micikevicius2022}) are
 deployed in production hardware (NVIDIA H100, AMD MI300, Google TPU).
-The OCP Microscaling (MX) specification~[3] codifies 8~bits per element with
+The OCP Microscaling (MX) specification~\cite{rouhani2023} codifies 8~bits per element with
 block scaling as sufficient for both training and inference of large language
 models.
 In telecommunications, logarithmic companding ($\mu$-law and A-law) has been
-the foundation of PCM quantization since the 1960s~[4], providing approximately
+the foundation of PCM quantization since the 1960s~\cite{smith1957}, providing approximately
 constant signal-to-noise ratio across signal levels.
 In edge computing and IoT, the energy cost of arithmetic --- particularly
-multiplication, which dominates at $>10\times$ the cost of addition~[5] ---
+multiplication, which dominates at $>10\times$ the cost of addition~\cite{horowitz2014} ---
 makes low-precision formats with cheap multiply operations attractive for
 on-device inference.
 In scientific computing, reduced-precision formats accelerate simulations in
@@ -150,45 +150,45 @@ elements) to achieve full FP32 dynamic range.
 \subsection{Prior Work}
 
 \textbf{Log-domain ML arithmetic.}
-The closest prior work is Johnson's (2018) ELMA format~[6], which demonstrated
+The closest prior work is Johnson's (2018) ELMA format~\cite{johnson2018}, which demonstrated
 that log-domain multiply with Kulisch accumulation is viable for 8-bit deep
 learning --- QF8's core multiply-as-addition mechanism is Johnson's.
-Johnson used a posit-style tapered encoding~[7], which provides variable
+Johnson used a posit-style tapered encoding~\cite{gustafson2017}, which provides variable
 precision across the range; QF8 replaces this with a simpler fixed-width
 \texttt{u3.4} code.
-Miyashita et al.~[8] explored logarithmic data representation for CNNs,
+Miyashita et al.~\cite{miyashita2016} explored logarithmic data representation for CNNs,
 and the Logarithmic Number System (LNS) has been studied since the
-1970s~[9, 10].
+1970s~\cite{kingsbury1971, swartzlander1975}.
 
 \textbf{Block scaling.}
-The OCP Microscaling (MX) specification~[3] established E8M0 block scaling as a
+The OCP Microscaling (MX) specification~\cite{rouhani2023} established E8M0 block scaling as a
 practical way to decouple dynamic range from per-element precision.
 QF8 adopts this directly: the difference is the per-element encoding
 (log code vs.\ IEEE-like floating point).
 
 \textbf{Distribution-aware quantization.}
-NF4~[11] (QLoRA) places levels at Gaussian quantiles, achieving optimal
+NF4~\cite{dettmers2023} (QLoRA) places levels at Gaussian quantiles, achieving optimal
 quantization for a specific distribution.
 QF8's log-uniform spacing takes the opposite approach: minimax optimality
 across \emph{all} distributions (Section~\ref{sec:equalization}).
 
 \textbf{Classical quantization theory.}
-Bennett~[12] established the high-resolution framework for quantization
+Bennett~\cite{bennett1948} established the high-resolution framework for quantization
 distortion.
-Panter and Dite~[13] derived the MSE-optimal compander (the one-third-power
+Panter and Dite~\cite{panter1951} derived the MSE-optimal compander (the one-third-power
 rule), which depends critically on the source distribution.
-Smith~[4] observed that logarithmic companding achieves approximately
+Smith~\cite{smith1957} observed that logarithmic companding achieves approximately
 amplitude-independent SNR for PCM telephony, but his result concerns signal
 level, not source distribution, and his distortion formula remains
 distribution-dependent (e.g., $0.707$ for exponential, $0.798$ for Gaussian
 inputs).
-Most directly related, Sun and Goyal~[14] proved that logarithmic companding is
+Most directly related, Sun and Goyal~\cite{sun2011} proved that logarithmic companding is
 \emph{variable-rate} optimal for MSRE but showed it is \emph{not} generally
 optimal for fixed-rate quantization.
 Theorem~\ref{thm:minimax} provides the complementary fixed-rate minimax result:
 the equalization property makes log-uniform quantization uniquely
 density-independent, resolving the fixed-rate question.
-The standard references~[15, 16] provide comprehensive treatments of
+The standard references~\cite{gray1998, gersho1992} provide comprehensive treatments of
 quantization and companding theory.
 
 \subsection{Contributions}
@@ -202,7 +202,7 @@ quantization and companding theory.
     This density-independence implies that log-uniform quantization is the
     unique fixed-rate minimax-optimal quantizer for NMSE over all source
     distributions (Theorem~\ref{thm:minimax}), complementing Sun and
-    Goyal's~[14] variable-rate result with a fixed-rate minimax guarantee.
+    Goyal's~\cite{sun2011} variable-rate result with a fixed-rate minimax guarantee.
   \item \textbf{Format design.}
     QF8 combines a \texttt{u3.4} fixed-point log code (16 levels per octave)
     with E8M0 block scaling, achieving $2\times$ the precision per octave of
@@ -316,7 +316,7 @@ partially offsetting the multiply-path savings.
 
 The classical weakness of log-domain arithmetic is that \emph{addition} in the
 original domain is expensive.
-QF8 adopts the \textbf{Kulisch accumulation} strategy~[6]:
+QF8 adopts the \textbf{Kulisch accumulation} strategy~\cite{johnson2018}:
 \begin{enumerate}[leftmargin=2em]
   \item Multiply in log domain (integer addition of codes).
   \item Convert each product to linear domain via a $2^4 = 16$-entry lookup
@@ -396,7 +396,7 @@ Calibration-free     & No    & No    & No    & ---   & \textbf{Yes}$^\dagger$ \\
 %% ═══════════════════════════════════════════════════════
 
 This section presents gate-level hardware models anchored to published silicon
-data from Horowitz (ISSCC 2014)~[5], Johnson (2018 ELMA ASIC at 28nm)~[6], and
+data from Horowitz (ISSCC 2014)~\cite{horowitz2014}, Johnson (2018 ELMA ASIC at 28nm)~\cite{johnson2018}, and
 NVIDIA architecture whitepapers.
 \textbf{All gate counts are NAND2-equivalent estimates.}
 No RTL has been written and no synthesis has been performed.
@@ -544,7 +544,7 @@ Bit-width & Mult saved (gates) & LUT overhead (gates) & Net & vs INT-$N$ \\
 \textbf{The crossover is at ${\sim}7$--$8$~bits.}
 Below 7~bits, the LUT and accumulator overhead exceeds multiplier savings.
 Above 8~bits, log-domain wins decisively and the advantage grows quadratically.
-This confirms Johnson's~[6] finding that 16-bit ELMA achieves 41\% power
+This confirms Johnson's~\cite{johnson2018} finding that 16-bit ELMA achieves 41\% power
 reduction over FP16.
 
 \subsection{Summary}
@@ -564,7 +564,7 @@ reduction over FP16.
 The per-MAC energy advantages above apply to the compute datapath only.
 Modern inference workloads are typically memory-bandwidth-bound, where
 data-movement energy dominates arithmetic cost by two orders of
-magnitude~[5].
+magnitude~\cite{horowitz2014}.
 In this regime, QF8's primary efficiency contribution is indirect: at identical
 8-bit bandwidth, QF8 delivers $+6.6$~dB higher SQNR than FP8 E4M3, potentially
 enabling 8-bit deployment in settings that would otherwise require 16-bit
@@ -627,7 +627,7 @@ The MSRE is density-independent.
 
 \begin{proof}
 For the log-uniform quantizer, $w(x) = x \cdot \varepsilon + O(x\varepsilon^2)$.
-Under Bennett's~[12] high-resolution integral approximation:
+Under Bennett's~\cite{bennett1948} high-resolution integral approximation:
 \[
   \NMSE = \frac{\int_a^b \frac{w(x)^2}{12} f(x)\,dx}{\int_a^b x^2 f(x)\,dx}
   = \frac{\frac{\varepsilon^2}{12}\int_a^b x^2 f(x)\,dx}
@@ -746,9 +746,9 @@ The equalization property guarantees that QF8's error bound holds in all these
 settings.
 
 This result complements and strengthens prior work.
-Smith~[4] observed amplitude-independent SNR for log-PCM, but his
+Smith~\cite{smith1957} observed amplitude-independent SNR for log-PCM, but his
 distortion formula remains distribution-dependent.
-Sun and Goyal~[14] proved that log companding is variable-rate MSRE-optimal but
+Sun and Goyal~\cite{sun2011} proved that log companding is variable-rate MSRE-optimal but
 showed it is \emph{not} generally fixed-rate optimal.
 The equalization property resolves this: log-uniform quantization \emph{is}
 fixed-rate minimax-optimal, precisely because its MSRE is density-independent.
@@ -1671,65 +1671,65 @@ motivating stochastic rounding or shared-exponent compression for gradients.
 \section*{References}
 %% ═══════════════════════════════════════════════════════
 
-\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em]
-  \item Micikevicius, P.\ et al.\ (2018).
+\begin{thebibliography}{19}
+  \bibitem{micikevicius2018} Micikevicius, P.\ et al.\ (2018).
     ``Mixed Precision Training.''
     \textit{ICLR 2018}. arXiv:1710.03740.
-  \item Micikevicius, P.\ et al.\ (2022).
+  \bibitem{micikevicius2022} Micikevicius, P.\ et al.\ (2022).
     ``FP8 Formats for Deep Learning.''
     arXiv:2209.05433.
-  \item Rouhani, B.\ et al.\ (2023).
+  \bibitem{rouhani2023} Rouhani, B.\ et al.\ (2023).
     ``Microscaling Data Formats for Deep Learning.''
     arXiv:2310.10537.
-  \item Smith, B.\ (1957).
+  \bibitem{smith1957} Smith, B.\ (1957).
     ``Instantaneous Companding of Quantized Signals.''
     \textit{Bell System Technical Journal} 36(3):653--709.
-  \item Horowitz, M.\ (2014).
+  \bibitem{horowitz2014} Horowitz, M.\ (2014).
     ``Computing's Energy Problem (and what we can do about it).''
     \textit{ISSCC}.
-  \item Johnson, J.\ (2018).
+  \bibitem{johnson2018} Johnson, J.\ (2018).
     ``Rethinking Floating Point for Deep Learning.''
     arXiv:1811.01721.
-  \item Gustafson, J.\ and Yonemoto, I.\ (2017).
+  \bibitem{gustafson2017} Gustafson, J.\ and Yonemoto, I.\ (2017).
     ``Beating Floating Point at its Own Game: Posit Arithmetic.''
     \textit{Supercomputing Frontiers and Innovations} 4(2):71--86.
-  \item Miyashita, D.\ et al.\ (2016).
+  \bibitem{miyashita2016} Miyashita, D.\ et al.\ (2016).
     ``Convolutional Neural Networks using Logarithmic Data Representation.''
     arXiv:1603.01025.
-  \item Kingsbury, N.\ and Rayner, P.\ (1971).
+  \bibitem{kingsbury1971} Kingsbury, N.\ and Rayner, P.\ (1971).
     ``Digital filtering using logarithmic arithmetic.''
     \textit{Electronics Letters}.
-  \item Swartzlander, E.\ and Alexopoulos, A.\ (1975).
+  \bibitem{swartzlander1975} Swartzlander, E.\ and Alexopoulos, A.\ (1975).
     ``The Sign/Logarithm Number System.''
     \textit{IEEE Trans.\ Computers}.
-  \item Dettmers, T.\ et al.\ (2023).
+  \bibitem{dettmers2023} Dettmers, T.\ et al.\ (2023).
     ``QLoRA: Efficient Finetuning of Quantized LLMs.''
     arXiv:2305.14314.
-  \item Bennett, W.R.\ (1948).
+  \bibitem{bennett1948} Bennett, W.R.\ (1948).
     ``Spectra of Quantized Signals.''
     \textit{Bell System Technical Journal} 27(3):446--472.
-  \item Panter, P.F.\ and Dite, W.\ (1951).
+  \bibitem{panter1951} Panter, P.F.\ and Dite, W.\ (1951).
     ``Quantization Distortion in Pulse-Count Modulation with Nonuniform
     Spacing of Levels.''
     \textit{Proceedings of the IRE} 39(1):44--48.
-  \item Sun, J.Z.\ and Goyal, V.K.\ (2011).
+  \bibitem{sun2011} Sun, J.Z.\ and Goyal, V.K.\ (2011).
     ``Scalar Quantization for Relative Error.''
     \textit{Proc.\ IEEE Data Compression Conference (DCC)}, pp.~293--302.
-  \item Gray, R.M.\ and Neuhoff, D.L.\ (1998).
+  \bibitem{gray1998} Gray, R.M.\ and Neuhoff, D.L.\ (1998).
     ``Quantization.''
     \textit{IEEE Trans.\ Information Theory} 44(6):2325--2383.
-  \item Gersho, A.\ and Gray, R.M.\ (1992).
+  \bibitem{gersho1992} Gersho, A.\ and Gray, R.M.\ (1992).
     \textit{Vector Quantization and Signal Compression}.
     Kluwer Academic.
-  \item Jouppi, N.\ et al.\ (2017).
+  \bibitem{jouppi2017} Jouppi, N.\ et al.\ (2017).
     ``In-Datacenter Performance Analysis of a Tensor Processing Unit.''
     \textit{ISCA}.
-  \item Sze, V.\ et al.\ (2017).
+  \bibitem{sze2017} Sze, V.\ et al.\ (2017).
     ``Efficient Processing of Deep Neural Networks: A Tutorial and Survey.''
     \textit{Proc.\ IEEE}.
-  \item Kuzmin, A.\ et al.\ (2022).
+  \bibitem{kuzmin2022} Kuzmin, A.\ et al.\ (2022).
     ``FP8 Quantization: The Power of the Exponent.''
     arXiv:2208.09225.
-\end{enumerate}
+\end{thebibliography}
 
 \end{document}
