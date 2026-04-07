@@ -25,10 +25,10 @@ qf8_values = np.sort(np.concatenate([-qf8_magnitudes[1:], qf8_magnitudes]))
 # ─── FP8 E4M3 representable values ───────────────────────────────────────────
 # 8 bits: 1 sign + 4 exponent + 3 mantissa
 # Exponent bias = 7
-# Normal:   (-1)^s × 2^(e-7) × (1 + m/8),  e in [1,14], m in [0,7]
+# Normal:   (-1)^s × 2^(e-7) × (1 + m/8),  e in [1,15], m in [0,7]
 # Subnormal: (-1)^s × 2^(-6) × (m/8),       e=0, m in [1,7]  (m=0 → zero)
-# e=15 (all ones): NaN (all 8 combos), no inf in E4M3
-# Note: E4M3 has no infinity; e=15,m=0..7 are all NaN
+# E4M3FN (OCP spec): only e=15, m=7 is NaN (no inf). e=15, m=0..6 are valid normals.
+# Max value = 2^8 × (1 + 6/8) = 448
 
 fp8_magnitudes = [0.0]
 
@@ -36,12 +36,12 @@ fp8_magnitudes = [0.0]
 for m in range(1, 8):
     fp8_magnitudes.append(2.0**(-6) * (m / 8.0))
 
-# Normals: e=1..14, m=0..7
-for e in range(1, 15):
+# Normals: e=1..15, m=0..7, excluding e=15 m=7 (NaN)
+for e in range(1, 16):
     for m in range(8):
+        if e == 15 and m == 7:
+            continue  # NaN
         fp8_magnitudes.append(2.0**(e - 7) * (1.0 + m / 8.0))
-
-# e=15: NaN (skip)
 
 fp8_magnitudes = np.array(sorted(set(fp8_magnitudes)))
 fp8_values = np.sort(np.concatenate([-fp8_magnitudes[1:], fp8_magnitudes]))
@@ -303,7 +303,7 @@ x_lo, x_hi = 0.0, 128.0
 # Find all integer exponents where at least one value from any format
 # falls in [x_lo, x_hi] (excluding zero).
 contributing_exps = []
-for exp in range(-20, 20):
+for exp in range(-20, 21):
     scale = 2.0 ** exp
     any_in = False
     for pos in [fp8_pos, fp8e5m2_pos, qf8_pos, int8_pos]:
