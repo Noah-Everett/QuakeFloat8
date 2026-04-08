@@ -39,7 +39,7 @@
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \theoremstyle{remark}
-\newtheorem*{remark}{Remark}
+\newtheorem{remark}[theorem]{Remark}
 
 % ── Boxes ──
 \newtcolorbox{keyresult}{colback=green!5!white, colframe=green!50!black,
@@ -149,7 +149,7 @@ elements) to achieve full FP32 dynamic range.
 
 \subsection{Prior Work}
 
-\textbf{Log-domain ML arithmetic.}
+\paragraph{Log-domain ML arithmetic.}
 The closest prior work is Johnson's (2018) ELMA format~\cite{johnson2018}, which demonstrated
 that log-domain multiply with Kulisch accumulation is viable for 8-bit deep
 learning --- QF8's core multiply-as-addition mechanism is Johnson's.
@@ -160,19 +160,19 @@ Miyashita et al.~\cite{miyashita2016} explored logarithmic data representation f
 and the Logarithmic Number System (LNS) has been studied since the
 1970s~\cite{kingsbury1971, swartzlander1975}.
 
-\textbf{Block scaling.}
+\paragraph{Block scaling.}
 The OCP Microscaling (MX) specification~\cite{rouhani2023} established E8M0 block scaling as a
 practical way to decouple dynamic range from per-element precision.
 QF8 adopts this directly: the difference is the per-element encoding
 (log code vs.\ IEEE-like floating point).
 
-\textbf{Distribution-aware quantization.}
+\paragraph{Distribution-aware quantization.}
 NF4~\cite{dettmers2023} (QLoRA) places levels at Gaussian quantiles, achieving optimal
 quantization for a specific distribution.
 QF8's log-uniform spacing takes the opposite approach: minimax optimality
 across \emph{all} distributions (Section~\ref{sec:equalization}).
 
-\textbf{Classical quantization theory.}
+\paragraph{Classical quantization theory.}
 Bennett~\cite{bennett1948} established the high-resolution framework for quantization
 distortion.
 Panter and Dite~\cite{panter1951} derived the MSE-optimal compander (the one-third-power
@@ -256,7 +256,7 @@ The effective storage cost is $8 + 8/32 = 8.25$~bits per element.
 \subsection{Logarithmic Spacing}
 
 The \texttt{u3.4} code provides 3~integer bits and 4~fractional bits of
-$\log_2|x/s|$, spanning 8~octaves with \textbf{16 representable levels per
+$\log_2|x/s|$, spanning 8~octaves with \emph{16 representable levels per
 octave}.
 This is the \emph{log-uniform quantizer}: the ratio between consecutive
 representable values is constant at $r = 2^{1/16} \approx 1.0443$, giving a
@@ -316,7 +316,7 @@ partially offsetting the multiply-path savings.
 
 The classical weakness of log-domain arithmetic is that \emph{addition} in the
 original domain is expensive.
-QF8 adopts the \textbf{Kulisch accumulation} strategy~\cite{johnson2018}:
+QF8 adopts the \emph{Kulisch accumulation} strategy~\cite{johnson2018}:
 \begin{enumerate}[leftmargin=2em]
   \item Multiply in log domain (integer addition of codes).
   \item Convert each product to linear domain via a $2^4 = 16$-entry lookup
@@ -398,7 +398,7 @@ Calibration-free     & No    & No    & No    & ---   & \textbf{Yes}$^\dagger$ \\
 This section presents gate-level hardware models anchored to published silicon
 data from Horowitz (ISSCC 2014)~\cite{horowitz2014}, Johnson (2018 ELMA ASIC at 28nm)~\cite{johnson2018}, and
 NVIDIA architecture whitepapers.
-\textbf{All gate counts are NAND2-equivalent estimates.}
+\emph{All gate counts are NAND2-equivalent estimates.}
 No RTL has been written and no synthesis has been performed.
 The numbers should be treated as order-of-magnitude guidance, not as measured
 silicon results.
@@ -439,7 +439,7 @@ Zero detection              & 10  & 0.4  \\
 Compare: INT8 $8\times 8$ multiplier $= 400$ gates; FP8 $4\times 4$ mantissa
 multiplier $+$ exponent logic $= 230$ gates; FP16 $11\times 11$ multiplier
 $= 850$ gates; FP32 $24\times 24$ multiplier $= 3200$ gates.
-The QF8 multiply path is \textbf{$3.5\times$ to $48\times$ cheaper} than
+The QF8 multiply path is $3.5\times$ to $48\times$ cheaper than
 alternatives.
 
 \subsection{QF8-Medium MAC Unit}
@@ -541,7 +541,7 @@ Bit-width & Mult saved (gates) & LUT overhead (gates) & Net & vs INT-$N$ \\
 \end{tabular}
 \end{table}
 
-\textbf{The crossover is at ${\sim}7$--$8$~bits.}
+The crossover is at ${\sim}7$--$8$~bits.
 Below 7~bits, the LUT and accumulator overhead exceeds multiplier savings.
 Above 8~bits, log-domain wins decisively and the advantage grows quadratically.
 This confirms Johnson's~\cite{johnson2018} finding that 16-bit ELMA achieves 41\% power
@@ -827,7 +827,7 @@ QF8 $-$ MXFP8 & $+6.5$ dB & $+6.2$ dB & $+6.5$ dB \\
 
 \begin{keyresult}
 QF8 achieves $\SQNR = 38.1$~dB vs.\ FP8 E4M3's 31.5~dB ---
-a \textbf{6.6~dB advantage}, corresponding to a ${\sim}4.6\times$ reduction in
+a $6.6$~dB advantage, corresponding to a ${\sim}4.6\times$ reduction in
 quantization noise power.
 This advantage is structural (16 vs.\ 8 levels per octave) and holds across all
 tested distributions.
@@ -917,7 +917,7 @@ degrades for heavy-tailed distributions.
 QF8's correlation is $r = -0.08$ --- effectively zero, confirming the
 equalization property.
 
-\textbf{Practical consequence:} QF8 weight quantization requires no per-layer
+\paragraph{Practical consequence.} QF8 weight quantization requires no per-layer
 calibration.
 Across all 1{,}481 tested tensors, the SQNR is consistently ${\sim}38$~dB
 regardless of model architecture, training procedure, or weight distribution
@@ -960,7 +960,7 @@ GPT-2 Large  & FP32 (baseline)   & 15.436 & ---        \\
 \end{tabular}
 \end{table}
 
-\textbf{Weight-only PTQ (GPT-2).}
+\paragraph{Weight-only PTQ (GPT-2).}
 QF8 consistently matches or outperforms MXFP8 across all three GPT-2 sizes,
 with degradation ${\leq}0.2\%$ everywhere.
 At GPT-2 Medium (355M), the gap is most pronounced: QF8 degrades by only
@@ -1037,7 +1037,7 @@ GPT-2 Large  & FP32 (baseline)   & 15.436 & ---        \\
 \end{tabular}
 \end{table}
 
-\textbf{W8A8 PTQ: a known limitation.}
+\paragraph{W8A8 PTQ: a known limitation.}
 Quantizing activations exposes a structural weakness of log-uniform spacing.
 At GPT-2 Small (124M), QF8's W8A8 penalty is $+1.73\%$ --- significantly worse
 than MXFP8's $+0.22\%$ ($8\times$ larger).
@@ -1051,7 +1051,7 @@ At GPT-2 Large (774M), QF8's W8A8 penalty is $+0.11\%$
 single-seed evaluation, and no error bars, this apparent scaling trend is not
 statistically robust.
 
-\textbf{Near-zero representation cliff.}
+\paragraph{Near-zero representation cliff.}
 Within a single block, QF8's smallest nonzero magnitude is
 $2^{(1-64)/16} \approx 0.065$ (code $c=1$).
 Values jump discontinuously from exact zero ($c=0$) to $0.065$.
@@ -1063,7 +1063,7 @@ ${\sim}3.8 \times 10^{-40}$.
 The cliff matters only \emph{within} a block where large and near-zero values
 coexist --- precisely the pattern produced by ReLU.
 
-\textbf{Implication:} QF8's calibration-free advantage applies to
+\paragraph{Implication.} QF8's calibration-free advantage applies to
 \emph{weight} quantization.
 For W8A8 deployment, activation-aware techniques (e.g., SmoothQuant-style
 channel balancing) would likely be needed, partially offsetting the
@@ -1114,7 +1114,7 @@ At this point the model has processed ${\sim}11$B tokens and reached validation
 loss ${\sim}3.13$ (perplexity ${\sim}23$), substantially beyond the
 early-training regime.
 
-\textbf{Limitations.}
+\paragraph{Limitations.}
 QF8 has only 1 seed (no error bars); FP8 was not included in this run.
 Training was terminated by cluster walltime at $27\%$ of the target.
 The model is not fully converged, so this result demonstrates training
@@ -1592,7 +1592,7 @@ Worst-case MSRE (HR) & $1.302 \times 10^{-3}$ & $6.256 \times 10^{-4}$
 \end{tabular}
 \end{table}
 
-\begin{remark}
+\begin{remark}[FP8 E4M3 SQNR Correction]
 The FP8 E4M3 SQNR of 31.5~dB is verified by per-binade analysis across all
 126 positive representable values, correcting an earlier figure of 25.1~dB that
 arose from an error in the dynamic-range assumption.
@@ -1633,7 +1633,7 @@ For $X \sim \mathcal{N}(0, \sigma^2)$:
   R(D) = \frac{1}{2}\log_2\!\left(\frac{\sigma^2}{D}\right),
   \quad D \leq \sigma^2
 \]
-This yields the \textbf{6 dB/bit rule}: each additional bit reduces MSE by
+This yields the \emph{6~dB/bit rule}: each additional bit reduces MSE by
 $4\times$ (6.02 dB).
 
 \subsection{Scalar Quantization Gap (Zador)}
