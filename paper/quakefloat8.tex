@@ -442,13 +442,15 @@ $= 850$ gates; FP32 $24\times 24$ multiplier $= 3200$ gates.
 The QF8 multiply path is $3.5\times$ to $48\times$ cheaper than
 alternatives.
 
-\subsection{QF8-Medium MAC Unit}
+\subsection{Full MAC Unit and Comparison}
 
-The recommended design point: 6-bit barrel shifter and 32-bit carry-save
-Kulisch accumulator for intra-block accumulation, with block-pair results
-reduced via FP32 arithmetic (matching MX-format accelerator practice).
+The recommended design point (QF8-Medium) pairs the multiply path with a
+6-bit barrel shifter and 32-bit carry-save Kulisch accumulator for intra-block
+accumulation, with block-pair results reduced via FP32 arithmetic (matching
+MX-format accelerator practice).
+Table~\ref{tab:qf8-medium} gives the component breakdown.
 
-\begin{table}[ht]
+\begin{table}[ht!]
 \centering
 \caption{QF8-Medium MAC unit breakdown (7nm, 1 GHz).}
 \label{tab:qf8-medium}
@@ -467,9 +469,12 @@ Control/mux                              & 34   & 1.4  \\
 \end{tabular}
 \end{table}
 
-\subsection{Master Comparison}
+Tables~\ref{tab:master-comparison} and~\ref{tab:savings-ratios} compare the
+full QF8-Medium MAC against INT8, FP8, FP16, and FP32 baselines.
+QF8-Medium is the smallest and lowest-power option, achieving near-INT8 area
+at ${\sim}2\times$ less than FP8 and ${\sim}9\times$ less than FP32.
 
-\begin{table}[ht]
+\begin{table}[ht!]
 \centering
 \caption{Per-MAC unit comparison at 7nm, 1 GHz.}
 \label{tab:master-comparison}
@@ -486,7 +491,7 @@ Critical path (gates) & 24--30 & 35--45 & 38--48 & 55--70 & \textbf{20--26}\\
 \end{tabular}
 \end{table}
 
-\begin{table}[ht]
+\begin{table}[ht!]
 \centering
 \caption{QF8-Medium savings ratios vs.\ each baseline.}
 \label{tab:savings-ratios}
@@ -501,9 +506,11 @@ Latency improvement & 55--65\% & 35--45\% & 25--35\% & $\sim$5--10\% \\
 \end{tabular}
 \end{table}
 
-\subsection{Systolic Array Scaling ($128 \times 128$)}
+Scaling to a $128 \times 128$ systolic array (16{,}384 MACs), the per-MAC
+advantages compound: QF8-Medium achieves the highest compute density and
+energy efficiency across all formats (Table~\ref{tab:systolic}).
 
-\begin{table}[ht]
+\begin{table}[ht!]
 \centering
 \caption{128$\times$128 systolic array estimates at 7nm, 1~GHz.}
 \label{tab:systolic}
