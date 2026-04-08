@@ -259,10 +259,10 @@ The \texttt{u3.4} code provides 3~integer bits and 4~fractional bits of
 $\log_2|x/s|$, spanning 8~octaves with \emph{16 representable levels per
 octave}.
 This is the \emph{log-uniform quantizer}: the ratio between consecutive
-representable values is constant at $r = 2^{1/16} \approx 1.0443$, giving a
-maximum relative quantization error of
+representable values is constant at $r = 2^{1/16} \approx 1.0443$.
+With geometric midpoints, the maximum relative quantization error is
 \[
-  \frac{r - 1}{2} \approx 2^{1/16} - 1 \approx 4.43\%.
+  \sqrt{r} - 1 = 2^{1/32} - 1 \approx 2.2\%.
 \]
 Compare FP8 E4M3, which has 8~levels per octave (3-bit mantissa) and a maximum
 relative error of $1/16 = 6.25\%$ within each binade.
