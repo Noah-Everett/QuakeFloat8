@@ -7,6 +7,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 
+# ─── LaTeX-style rendering for paper figures ──────────────────────────────────
+plt.rcParams.update({
+    'text.usetex': True,
+    'font.family': 'serif',
+    'font.serif': ['Computer Modern Roman'],
+    'axes.labelsize': 10,
+    'xtick.labelsize': 8,
+    'ytick.labelsize': 8,
+    'legend.fontsize': 8,
+})
+
 # ─── QF8 representable values (per-element, no block scaling) ─────────────────
 # 8 bits: 1 sign + 7-bit code in u3.4 fixed-point log
 # Value = (-1)^s × 2^((code - 64) / 16)
@@ -119,6 +130,75 @@ plt.savefig('repo/paper/figures/number_line_embedding.png', bbox_inches='tight',
 print("Saved to repo/paper/figures/number_line_embedding.{pdf,png}")
 plt.close(fig)
 
+# ─── Paper figures ────────────────────────────────────────────────────────────
+
+paper_formats = [
+    (r'\textsc{Int8}', int8_values, '#7f8c8d'),
+    (r'\textsc{Fp8} E5M2', fp8e5m2_values, '#e67e22'),
+    (r'\textsc{Fp8} E4M3', fp8_values, '#c0392b'),
+    (r'\textbf{QF8}', qf8_values, '#2471a3'),
+]
+n_fmt = len(paper_formats)
+
+# (a) Linear scale [0, 2]
+fig_pa, axes_pa = plt.subplots(n_fmt, 1, figsize=(6.5, 2.6), sharex=True)
+
+x_max_pa = 2.0
+for ax, (name, values, color) in zip(axes_pa, paper_formats):
+    vis = values[(values >= 0) & (values <= x_max_pa)]
+    ax.vlines(vis, 0, 1, colors=color, linewidth=0.6, alpha=0.8)
+    ax.set_ylim(0, 1)
+    ax.set_xlim(-0.01, x_max_pa)
+    ax.set_yticks([])
+    ax.set_ylabel(name, fontsize=9, rotation=0, ha='right', va='center',
+                  color=color, labelpad=8)
+    ax.tick_params(axis='x', labelsize=8, direction='out', length=3, width=0.5)
+    for spine in ['top', 'right', 'left']:
+        ax.spines[spine].set_visible(False)
+    ax.spines['bottom'].set_linewidth(0.4)
+    n = len(vis)
+    ax.text(0.99, 0.75, rf'{n} values',
+            ha='right', va='top', fontsize=7, color=color,
+            transform=ax.transAxes)
+
+axes_pa[-1].set_xlabel(r'Value', fontsize=9)
+axes_pa[0].set_title(r'(a) Linear scale, positive half $[0,\,2]$',
+                      fontsize=10, pad=6)
+fig_pa.subplots_adjust(hspace=0.15)
+plt.savefig('repo/paper/fig_number_line_linear.pdf', bbox_inches='tight', pad_inches=0.03)
+plt.savefig('repo/paper/figures/fig_number_line_linear.png', bbox_inches='tight', dpi=300)
+print("Saved paper figure: fig_number_line_linear.pdf")
+plt.close(fig_pa)
+
+# (b) Log₂ scale, full positive range
+fig_pb, axes_pb = plt.subplots(n_fmt, 1, figsize=(6.5, 2.6), sharex=True)
+
+for ax, (name, values, color) in zip(axes_pb, paper_formats):
+    pos = values[values > 0]
+    ax.vlines(pos, 0, 1, colors=color, linewidth=0.4, alpha=0.7)
+    ax.set_xscale('log', base=2)
+    ax.set_ylim(0, 1)
+    ax.set_yticks([])
+    ax.set_ylabel(name, fontsize=9, rotation=0, ha='right', va='center',
+                  color=color, labelpad=8)
+    ax.tick_params(axis='x', labelsize=8, direction='out', length=3, width=0.5)
+    for spine in ['top', 'right', 'left']:
+        ax.spines[spine].set_visible(False)
+    ax.spines['bottom'].set_linewidth(0.4)
+    n = len(pos)
+    ax.text(0.99, 0.75, rf'{n} values',
+            ha='right', va='top', fontsize=7, color=color,
+            transform=ax.transAxes)
+
+axes_pb[-1].set_xlabel(r'Value ($\log_2$ scale)', fontsize=9)
+axes_pb[0].set_title(r'(b) $\log_2$ scale, full positive range',
+                      fontsize=10, pad=6)
+fig_pb.subplots_adjust(hspace=0.15)
+plt.savefig('repo/paper/fig_number_line_log.pdf', bbox_inches='tight', pad_inches=0.03)
+plt.savefig('repo/paper/figures/fig_number_line_log.png', bbox_inches='tight', dpi=300)
+print("Saved paper figure: fig_number_line_log.pdf")
+plt.close(fig_pb)
+
 # ─── Plot 2: near-zero zoom ──────────────────────────────────────────────────
 
 fig_zoom, axes_zoom = plt.subplots(4, 1, figsize=(14, 6), sharex=True)
@@ -169,8 +249,8 @@ for ax, (name, values, color) in zip(axes2, formats):
             ha='right', va='top', fontsize=9, color=color, fontweight='bold',
             transform=ax.transAxes)
 
-axes2[-1].set_xlabel('Value (log₂ scale)', fontsize=11)
-axes2[0].set_title('Representable Numbers — Full Positive Range (log₂ scale)',
+axes2[-1].set_xlabel(r'Value ($\log_2$ scale)', fontsize=11)
+axes2[0].set_title(r'Representable Numbers --- Full Positive Range ($\log_2$ scale)',
                     fontsize=13, fontweight='bold', pad=10)
 
 plt.tight_layout()
@@ -207,7 +287,7 @@ for row, exp in enumerate(scale_exponents):
     ax_fp8.set_ylim(0, 1)
     ax_fp8.set_yticks([])
     ax_fp8.set_xscale('log', base=2)
-    ax_fp8.text(0.02, 0.7, f'scale = 2^{exp}', fontsize=8,
+    ax_fp8.text(0.02, 0.7, rf'scale $= 2^{{{exp}}}$', fontsize=8,
                 transform=ax_fp8.transAxes, color='#555')
     for spine in ['top', 'right', 'left']:
         ax_fp8.spines[spine].set_visible(False)
@@ -219,7 +299,7 @@ for row, exp in enumerate(scale_exponents):
     ax_qf8.set_ylim(0, 1)
     ax_qf8.set_yticks([])
     ax_qf8.set_xscale('log', base=2)
-    ax_qf8.text(0.02, 0.7, f'scale = 2^{exp}', fontsize=8,
+    ax_qf8.text(0.02, 0.7, rf'scale $= 2^{{{exp}}}$', fontsize=8,
                 transform=ax_qf8.transAxes, color='#555')
     for spine in ['top', 'right', 'left']:
         ax_qf8.spines[spine].set_visible(False)
@@ -228,8 +308,8 @@ axes_block[0, 0].set_title('FP8 E4M3 + E8M0 block scale', fontsize=11,
                             fontweight='bold', color='#e74c3c')
 axes_block[0, 1].set_title('QF8 + E8M0 block scale', fontsize=11,
                             fontweight='bold', color='#2980b9')
-axes_block[-1, 0].set_xlabel('Value (log₂ scale)', fontsize=10)
-axes_block[-1, 1].set_xlabel('Value (log₂ scale)', fontsize=10)
+axes_block[-1, 0].set_xlabel(r'Value ($\log_2$ scale)', fontsize=10)
+axes_block[-1, 1].set_xlabel(r'Value ($\log_2$ scale)', fontsize=10)
 
 fig_block.suptitle('Effect of E8M0 Block Scaling on Representable Numbers',
                     fontsize=13, fontweight='bold', y=1.01)
@@ -263,7 +343,7 @@ for row, exp in enumerate(scale_exponents):
     ax_fp8.set_ylim(0, 1)
     ax_fp8.set_xlim(-0.02, 1.02)
     ax_fp8.set_yticks([])
-    ax_fp8.text(0.02, 0.7, f'scale = 2^{exp}  (max = {fp8_scaled.max():.1f})',
+    ax_fp8.text(0.02, 0.7, rf'scale $= 2^{{{exp}}}$ (max $= {fp8_scaled.max():.1f}$)',
                 fontsize=8, transform=ax_fp8.transAxes, color='#555')
     for spine in ['top', 'right', 'left']:
         ax_fp8.spines[spine].set_visible(False)
@@ -274,7 +354,7 @@ for row, exp in enumerate(scale_exponents):
     ax_qf8.set_ylim(0, 1)
     ax_qf8.set_xlim(-0.02, 1.02)
     ax_qf8.set_yticks([])
-    ax_qf8.text(0.02, 0.7, f'scale = 2^{exp}  (max = {qf8_scaled.max():.1f})',
+    ax_qf8.text(0.02, 0.7, rf'scale $= 2^{{{exp}}}$ (max $= {qf8_scaled.max():.1f}$)',
                 fontsize=8, transform=ax_qf8.transAxes, color='#555')
     for spine in ['top', 'right', 'left']:
         ax_qf8.spines[spine].set_visible(False)
@@ -339,7 +419,7 @@ for ax, exp in zip(axes_ov, contributing_exps):
     ax.set_ylim(0, 1)
     ax.set_xlim(-1, x_hi + 1)
     ax.set_yticks([])
-    ax.text(-0.01, 0.5, f'2^{exp}', fontsize=8, ha='right', va='center',
+    ax.text(-0.01, 0.5, rf'$2^{{{exp}}}$', fontsize=8, ha='right', va='center',
             transform=ax.transAxes, color='#555', family='monospace')
     for spine in ['top', 'right', 'left']:
         ax.spines[spine].set_visible(False)
@@ -402,7 +482,7 @@ for ax, (name, pos, color) in zip(axes_smash, smash_formats):
         ax.spines[spine].set_visible(False)
 
 axes_smash[-1].set_xlabel('Value', fontsize=11)
-fig_smash.suptitle('All Representable Numbers in [0, 128] — Union Across All E8M0 Scales',
+fig_smash.suptitle('All Representable Numbers in $[0, 128]$ --- Union Across All E8M0 Scales',
                     fontsize=13, fontweight='bold')
 
 plt.tight_layout()
@@ -433,8 +513,8 @@ for ax, (name, pos, color) in zip(axes_smash_log, smash_formats):
     for spine in ['top', 'right', 'left']:
         ax.spines[spine].set_visible(False)
 
-axes_smash_log[-1].set_xlabel('Value (log₂ scale)', fontsize=11)
-fig_smash_log.suptitle('All Representable Numbers in [0, 128] — Union Across All E8M0 Scales (log₂)',
+axes_smash_log[-1].set_xlabel(r'Value ($\log_2$ scale)', fontsize=11)
+fig_smash_log.suptitle(r'All Representable Numbers in $[0, 128]$ --- Union Across All E8M0 Scales ($\log_2$)',
                         fontsize=13, fontweight='bold')
 
 plt.tight_layout()
